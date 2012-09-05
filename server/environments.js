@@ -5,14 +5,14 @@ var path = require('path'),
 module.exports = function (express, app, config) {
 
 	app.engine('html', cons.whiskers);
-	app.set('views', path.join(__dirname, '..', 'views'));
+	app.set('views', path.join(__dirname, '..', 'client', 'views'));
 	app.set('view engine', 'html');
 	app.use(app.router);
 
 	app.use(require('connect-assets')({src:"client"}));
 
 	app.use(express.favicon());
-	app.use(express.static(path.join(__dirname, '..', 'public')));
+	app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
 
 	var env = app.get('env');
 
@@ -30,7 +30,7 @@ module.exports = function (express, app, config) {
 
 		app.use(express.logger('dev'));
 		app.set('port', config.port || 3000);
-	
+
 	} else if ('production' === env) {
 
 		config.extend(require(path.join(__dirname, 'conf', 'production.js')));

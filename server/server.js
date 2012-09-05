@@ -16,6 +16,24 @@ module.exports = function () {
 	var bs = BinaryServer({server: httpserver});
 
 
+
+	// Wait for new user connections
+	bs.on('connection', function(client){
+		// Incoming stream from browsers
+		client.on('stream', function(stream, meta){
+			//
+			var file = fs.createWriteStream(__dirname+ '/public/' + meta.name);
+			stream.pipe(file);
+			//
+			// Send progress back
+			stream.on('data', function(data){
+				stream.write({rx: data.length / meta.size});
+			});
+			//
+		});
+	});
+
+
 	httpserver.listen(app.get('port'));
 	console.log("Express " + app.get('env') + " server listening on port " + app.get('port'));
 

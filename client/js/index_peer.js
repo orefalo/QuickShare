@@ -3,8 +3,6 @@
 //= require center
 //= require dropzone_peer
 //= require canonicalize
-//= require ../libs/idb.filesystem.js
-
 
 function errorHandler(err) {
 
