@@ -49,13 +49,15 @@ DropZone.onDrop = function (event) {
 	for (var i = 0; i < count; i++) {
 		if (files[i].size < MAX_FILE_SIZE) {
 
-			var file = files[i];
-			DropZone.file = file;
+			DropZone.file = files[i];
 
 			// Generate a random hash
-			var hash = RandomString.gen(16);
+			var hash = UUID.gen();
 
-			socket.emit('ready', hash, file.name, file.type, file.size);
+			var stream=client.send({event:'join', hash:hash});
+			stream.on('data', function(data){
+				console.log(data);
+			});
 
 			$('#linkURL').attr('href', hash);
 			DropZone.setSlide(1);
