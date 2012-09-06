@@ -5,7 +5,7 @@
 //= require canonicalize
 //= require UUID
 
-var client, stream;
+var client;
 
 $(function () {
 	var url = canonicalize(document.location.href);
@@ -16,7 +16,15 @@ $(function () {
 	alert(client);
 	client.on('open', function () {
 
+		client.on('drop', function (hash, file) {
 
+			var stream = client.send({event:'join', hash:hash});
+			stream.on('data', function (data) {
+				console.log(data);
+			});
+
+
+		});
 
 
 	});
