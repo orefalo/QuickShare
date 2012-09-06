@@ -10,12 +10,10 @@ var client;
 $(function () {
 	var url = canonicalize(document.location.href);
 
-	alert(url.host);
 	client = new BinaryClient('ws://' + url.host);
-
-	alert(client);
 	client.on('open', function () {
 
+		// triggered by the dropzone
 		client.on('drop', function (hash, file) {
 
 			var stream = client.send({event:'join', hash:hash});
@@ -23,9 +21,7 @@ $(function () {
 				console.log(data);
 			});
 
-
 		});
-
 
 	});
 
