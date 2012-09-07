@@ -1,8 +1,9 @@
 var path = require('path'),
 	cons = require('consolidate'),
-	connectDomain = require('connect-domain');
+	connectDomain = require('connect-domain'),
+    config = require(path.join(__dirname, 'conf', 'defaults.js'));
 
-module.exports = function (express, app, config) {
+module.exports = function (express, app) {
 
 	app.engine('html', cons.whiskers);
 	app.set('views', path.join(__dirname, '..', 'client', 'views'));

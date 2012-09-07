@@ -4,18 +4,38 @@ module.exports = function () {
 	var fs = require('fs');
 	var http = require('http');
 	var express = require('express');
-	var config = require(path.join(__dirname, 'conf', 'general.js'));
 
 	var app = express();
 
-	require(path.join(__dirname, 'environments.js'))(express, app, config);
-	require(path.join(__dirname, 'routes.js'))(app, config);
+	require(path.join(__dirname, 'environments.js'))(express, app);
 
-	var httpserver = http.createServer(app);
+	app.get('/', function (req, res) {
 
-	var BinaryServer = require('binaryjs').BinaryServer;
-	var bs = BinaryServer({server:httpserver});
+		res.render('main.html', {
+			partials:{body:'host.html'},
+			css:css('host.css'),
+			javascript:js('index_host.js')
+		});
+	});
 
+	app.get('/:hash', function (req, res) {
+
+		res.render('main.html', {
+			partials:{body:'peer.html'},
+			css:css('peer.css'),
+			javascript:js('index_peer.js')
+		});
+	});
+
+
+	var httpServer = http.createServer(app);
+
+	var binaryServer = require('binaryjs').BinaryServer;
+	var bs = binaryServer({server:httpServer});
+
+
+//	var binaryServer = require('binaryjs').BinaryServer;
+//	var bs = require('binaryjs').BinaryServer({server:httpServer});
 
 	// Wait for new user connections
 	bs.on('connection', function (client) {
@@ -32,7 +52,6 @@ module.exports = function () {
 					stream.write({percent:data.length / meta.size});
 				});
 
-
 			} else {
 				stream.on('data', function (data) {
 					var event = data.event;
@@ -46,7 +65,7 @@ module.exports = function () {
 		});
 	});
 
-	httpserver.listen(app.get('port'));
+	httpServer.listen(app.get('port'));
 	console.log("Express " + app.get('env') + " server listening on port " + app.get('port'));
 
 };
