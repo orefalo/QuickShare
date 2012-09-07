@@ -55,7 +55,7 @@ DropZone.onDrop = function (event) {
 			// Generate a random hash
 			var hash = UUID.gen();
 
-			client.emit('drop', hash, file);
+			client.emit('quickshare.drop', hash, file);
 
 			$('#linkURL').attr('href', hash);
 			DropZone.setSlide(1);

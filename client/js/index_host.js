@@ -14,15 +14,24 @@ $(function () {
 	client.on('open', function () {
 
 		// triggered by the dropzone
-		client.on('drop', function (hash, file) {
+		client.on('quickshare.drop', function (hash, file) {
 
 			var stream = client.send({event:'join', hash:hash});
 			stream.on('data', function (data) {
-				console.log(data);
+				var event = data.event;
+				if (event === "start") {
+//					stream.close(function () {
+						client.emit('quickshare.start', hash, file);
+//					});
+				}
 			});
 
 		});
 
-	});
 
+		client.on('quickshare.start', function (hash, file) {
+			console.log("starting...");
+			var stream = client.send(file, {name:file.name, size:file.size});
+		});
+	});
 });

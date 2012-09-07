@@ -1,6 +1,7 @@
 module.exports = function () {
 
 	var path = require('path');
+	var fs = require('fs');
 	var http = require('http');
 	var express = require('express');
 	var config = require(path.join(__dirname, 'conf', 'general.js'));
@@ -22,20 +23,21 @@ module.exports = function () {
 		// Incoming stream from browsers
 		client.on('stream', function (stream, meta) {
 
-//			var file = path.createWriteStream(__dirname + '/public/' + meta.name);
-//			stream.pipe(file);
-
-			stream.on('data', function (data) {
-				var event = data.event;
-				if (event === "join") {
-					console.log(data.hash);
-					stream.write({test:"all good"});
-				}
-			});
+			if (meta) {
+				var file = fs.createWriteStream('/tmp/' + meta.name);
+				stream.pipe(file);
+			} else {
+				stream.on('data', function (data) {
+					var event = data.event;
+					if (event === "join") {
+						console.log(data.hash);
+						stream.write({event:"start"});
+					}
+				});
+			}
 
 		});
 	});
-
 
 	httpserver.listen(app.get('port'));
 	console.log("Express " + app.get('env') + " server listening on port " + app.get('port'));
