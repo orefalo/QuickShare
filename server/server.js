@@ -20,12 +20,19 @@ module.exports = function () {
 	// Wait for new user connections
 	bs.on('connection', function (client) {
 
-		// Incoming stream from browsers
+		// Incoming stream from browsers: can be a file stram or an event stream
 		client.on('stream', function (stream, meta) {
 
 			if (meta) {
 				var file = fs.createWriteStream('/tmp/' + meta.name);
 				stream.pipe(file);
+
+				stream.on('data', function (data) {
+					// send progress updates to the client
+					stream.write({percent:data.length / meta.size});
+				});
+
+
 			} else {
 				stream.on('data', function (data) {
 					var event = data.event;

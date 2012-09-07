@@ -20,18 +20,20 @@ $(function () {
 			stream.on('data', function (data) {
 				var event = data.event;
 				if (event === "start") {
-//					stream.close(function () {
-						client.emit('quickshare.start', hash, file);
-//					});
+					client.emit('quickshare.start', hash, file);
 				}
 			});
 
 		});
 
-
+		// raised when the peer connects
 		client.on('quickshare.start', function (hash, file) {
-			console.log("starting...");
-			var stream = client.send(file, {name:file.name, size:file.size});
+			var stream = client.send(file, {name:file.name, size:file.size, type:file.type});
+			// Print progress
+			var tx = 0;
+			stream.on('data', function(data){
+				console.log(Math.round(tx+=data.percent*100) + '% complete');
+			});
 		});
 	});
 });
