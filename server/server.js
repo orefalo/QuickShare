@@ -70,7 +70,8 @@ module.exports = function () {
 
 				peerResponse.writeHead(200, {
 					'Content-Type':meta.type,
-					'Content-Length':meta.size
+					'Content-Length':meta.size,
+					'Content-Disposition': 'attachment; filename='+meta.name
 				});
 				stream.pipe(peerResponse);
 
