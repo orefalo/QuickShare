@@ -29,7 +29,7 @@ module.exports = function () {
 		console.log("hash " + req);
 
 		peerResponse = res;
-		theClient.emit("quickshare.peerconnected");
+		theStreamToMaster.write({event:"start"});
 
 //		res.render('main.html', {
 //			partials:{body:'peer.html'},
@@ -56,10 +56,12 @@ module.exports = function () {
 
 		theClient = client;
 
-		client.on('quickshare.peerconnected', function () {
-
-			theStreamToMaster.write({event:"start"});
-		});
+		//
+//		client.on('quickshare.peerconnected', function () {
+//
+//			// tell the master to send the file
+//			theStreamToMaster.write({event:"start"});
+//		});
 
 		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
