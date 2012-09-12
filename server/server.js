@@ -1,3 +1,8 @@
+var theClient;
+var peerResponse;
+var theStreamToMaster;
+var theHash;
+
 module.exports = function () {
 
 	var path = require('path');
@@ -11,6 +16,7 @@ module.exports = function () {
 
 	app.get('/', function (req, res) {
 
+
 		res.render('main.html', {
 			partials:{body:'host.html'},
 			css:css('host.css'),
@@ -18,13 +24,18 @@ module.exports = function () {
 		});
 	});
 
-	app.get('/:hash', function (req, res) {
+	app.get('/get/:hash', function (req, res) {
 
-		res.render('main.html', {
-			partials:{body:'peer.html'},
-			css:css('peer.css'),
-			javascript:js('index_peer.js')
-		});
+		console.log("hash "+req);
+
+		peerResponse = res;
+		theClient.emit("quickshare.peerconnected");
+
+//		res.render('main.html', {
+//			partials:{body:'peer.html'},
+//			css:css('peer.css'),
+//			javascript:js('index_peer.js')
+//		});
 	});
 
 
@@ -34,30 +45,47 @@ module.exports = function () {
 	var bs = binaryServer({server:httpServer});
 
 
-//	var binaryServer = require('binaryjs').BinaryServer;
-//	var bs = require('binaryjs').BinaryServer({server:httpServer});
-
 	// Wait for new user connections
 	bs.on('connection', function (client) {
 
-		// Incoming stream from browsers: can be a file stram or an event stream
+
+		client.on('error', function(err1,err2)
+		{
+			console.log(err1);
+			console.log(err2);
+		});
+
+		theClient = client;
+
+		client.on('quickshare.peerconnected', function () {
+
+			theStreamToMaster.write({event:"start"});
+		});
+
+		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
 
+			// there is a meta when we stream a file
 			if (meta) {
-				var file = fs.createWriteStream('/tmp/' + meta.name);
-				stream.pipe(file);
 
-				stream.on('data', function (data) {
-					// send progress updates to the client
-					stream.write({percent:data.length / meta.size});
+				peerResponse.writeHead(200, {
+					'Content-Type':meta.type,
+					'Content-Length':meta.size
 				});
+				stream.pipe(peerResponse);
+
+//				stream.on('end', function () {
+//					peerResponse.close();
+//				});
 
 			} else {
 				stream.on('data', function (data) {
 					var event = data.event;
+					// that the initial join event raiser by the master
 					if (event === "join") {
+						theStreamToMaster = stream;
+						theHash=data.hash;
 						console.log(data.hash);
-						stream.write({event:"start"});
 					}
 				});
 			}

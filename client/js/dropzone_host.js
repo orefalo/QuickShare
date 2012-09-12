@@ -57,7 +57,7 @@ DropZone.onDrop = function (event) {
 
 			client.emit('quickshare.drop', hash, file);
 
-			$('#linkURL').attr('href', hash);
+			$('#linkURL').attr('href', "/get/" + hash);
 			DropZone.setSlide(1);
 
 		} else {
