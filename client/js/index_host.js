@@ -3,7 +3,7 @@
 //= require constants
 //= require BG
 //= require center
-//= require dropzone_host
+//= require dropzone
 //= require canonicalize
 //= require UUID
 
@@ -17,8 +17,7 @@ $(function () {
 	client.on('open', function () {
 
 
-		client.on('error', function(err1,err2)
-		{
+		client.on('error', function (err1, err2) {
 			console.log(err1);
 			console.log(err2);
 		});
@@ -33,19 +32,16 @@ $(function () {
 				if (event === "start") {
 					console.log("received a start event");
 					var stream = client.send(file, {name:file.name, size:file.size, type:file.type});
+
+					var tx = 0;
+					stream.on('data', function (data) {
+						console.log(Math.round(tx += data.tx * 100) + '% complete');
+					});
+
 				}
 			});
 
 		});
 
-//		// raised when the peer connects
-//		client.on('quickshare.start', function (hash, file) {
-//			var stream = client.send(file, {name:file.name, size:file.size, type:file.type});
-//			// Print progress
-////			var tx = 0;
-////			stream.on('data', function(data){
-////				console.log(Math.round(tx+=data.percent*100) + '% complete');
-////			});
-//		});
 	});
 });

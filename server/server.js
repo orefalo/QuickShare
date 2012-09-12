@@ -26,7 +26,7 @@ module.exports = function () {
 
 	app.get('/get/:hash', function (req, res) {
 
-		console.log("hash "+req);
+		console.log("hash " + req);
 
 		peerResponse = res;
 		theClient.emit("quickshare.peerconnected");
@@ -49,8 +49,7 @@ module.exports = function () {
 	bs.on('connection', function (client) {
 
 
-		client.on('error', function(err1,err2)
-		{
+		client.on('error', function (err1, err2) {
 			console.log(err1);
 			console.log(err2);
 		});
@@ -71,9 +70,14 @@ module.exports = function () {
 				peerResponse.writeHead(200, {
 					'Content-Type':meta.type,
 					'Content-Length':meta.size,
-					'Content-Disposition': 'attachment; filename='+meta.name
+					'Content-Disposition':'attachment; filename=' + meta.name
 				});
 				stream.pipe(peerResponse);
+
+				// Send progress back to client
+				stream.on('data', function (data) {
+					stream.write({tx:data.length / meta.size});
+				});
 
 //				stream.on('end', function () {
 //					peerResponse.close();
@@ -85,7 +89,7 @@ module.exports = function () {
 					// that the initial join event raiser by the master
 					if (event === "join") {
 						theStreamToMaster = stream;
-						theHash=data.hash;
+						theHash = data.hash;
 						console.log(data.hash);
 					}
 				});
