@@ -27,11 +27,11 @@ $(function () {
 			console.log("quickshare.drop");
 			var stream = client.send({event:'join', hash:hash});
 			stream.on('data', function (data) {
-				console.log("data event");
+
 				var event = data.event;
 				if (event === "start") {
-					console.log("received a start event");
-					var stream = client.send(file, {name:file.name, size:file.size, type:file.type});
+
+					var stream = client.send(file, {name:file.name, size:file.size, type:file.type, hash:hash});
 
 					var tx = 0;
 					stream.on('data', function (data) {

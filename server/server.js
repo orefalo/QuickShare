@@ -1,9 +1,8 @@
-var theClient;
-var peerResponse;
-var theStreamToMaster;
-var theHash;
 
 module.exports = function () {
+
+
+	var shares = {};
 
 	var path = require('path');
 	var fs = require('fs');
@@ -28,8 +27,16 @@ module.exports = function () {
 
 		console.log("hash " + req);
 
-		peerResponse = res;
-		theStreamToMaster.write({event:"start"});
+		var myShare = shares[req.param('hash')];
+		if (myShare) {
+
+			myShare.peer = res;
+			myShare.master.write({event:"start"});
+
+		}
+
+//		peerResponse = res;
+//		theStreamToMaster.write({event:"start"});
 
 //		res.render('main.html', {
 //			partials:{body:'peer.html'},
@@ -54,14 +61,6 @@ module.exports = function () {
 			console.log(err2);
 		});
 
-		theClient = client;
-
-		//
-//		client.on('quickshare.peerconnected', function () {
-//
-//			// tell the master to send the file
-//			theStreamToMaster.write({event:"start"});
-//		});
 
 		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
@@ -69,30 +68,45 @@ module.exports = function () {
 			// there is a meta when we stream a file
 			if (meta) {
 
-				peerResponse.writeHead(200, {
-					'Content-Type':meta.type,
-					'Content-Length':meta.size,
-					'Content-Disposition':'attachment; filename=' + meta.name
-				});
-				stream.pipe(peerResponse);
+				var myShare = shares[meta.hash];
+				if (myShare) {
 
-				// Send progress back to client
-				stream.on('data', function (data) {
-					stream.write({tx:data.length / meta.size});
-				});
 
-//				stream.on('end', function () {
-//					peerResponse.close();
-//				});
+					var peer = myShare.peer;
 
+					peer.writeHead(200, {
+						'Content-Type':meta.type,
+						'Content-Length':meta.size,
+						'Content-Disposition':'attachment; filename=' + meta.name
+					});
+
+					// Send progress back to client
+					stream.on('data', function (data) {
+						stream.write({tx:data.length / meta.size});
+					});
+					stream.on('end', function () {
+						// remove the share after completion
+						shares[meta.hash] = null;
+					});
+
+					stream.pipe(peer);
+
+				}
 			} else {
 				stream.on('data', function (data) {
+
 					var event = data.event;
+
 					// that the initial join event raiser by the master
 					if (event === "join") {
-						theStreamToMaster = stream;
-						theHash = data.hash;
-						console.log(data.hash);
+
+						var myShare = shares[data.hash];
+						if (!myShare) {
+							shares[data.hash] = {isStarted:false, master:stream};
+						} else if (myShare.isStarted === true)
+							console.log("Transfer already started");
+
+
 					}
 				});
 			}
