@@ -1,4 +1,3 @@
-
 module.exports = function () {
 
 
@@ -15,7 +14,6 @@ module.exports = function () {
 
 	app.get('/', function (req, res) {
 
-
 		res.render('main.html', {
 			partials:{body:'host.html'},
 			css:css('host.css'),
@@ -28,33 +26,29 @@ module.exports = function () {
 		console.log("hash " + req);
 
 		var myShare = shares[req.param('hash')];
-		if (myShare) {
+		if (myShare && myShare.isStarted === false) {
 
 			myShare.peer = res;
 			myShare.master.write({event:"start"});
+		} else {
 
+			// download already started
+			res.render('main.html', {
+				partials:{body:'peer.html'},
+				css:css('peer.css'),
+				javascript:js('index_peer.js')
+			});
 		}
 
-//		peerResponse = res;
-//		theStreamToMaster.write({event:"start"});
-
-//		res.render('main.html', {
-//			partials:{body:'peer.html'},
-//			css:css('peer.css'),
-//			javascript:js('index_peer.js')
-//		});
 	});
-
 
 	var httpServer = http.createServer(app);
 
 	var binaryServer = require('binaryjs').BinaryServer;
 	var bs = binaryServer({server:httpServer});
 
-
 	// Wait for new user connections
 	bs.on('connection', function (client) {
-
 
 		client.on('error', function (err1, err2) {
 			console.log(err1);
@@ -71,7 +65,6 @@ module.exports = function () {
 				var myShare = shares[meta.hash];
 				if (myShare) {
 
-
 					var peer = myShare.peer;
 
 					peer.writeHead(200, {
@@ -86,7 +79,7 @@ module.exports = function () {
 					});
 					stream.on('end', function () {
 						// remove the share after completion
-						shares[meta.hash] = null;
+						delete shares[meta.hash];
 					});
 
 					stream.pipe(peer);
@@ -105,7 +98,6 @@ module.exports = function () {
 							shares[data.hash] = {isStarted:false, master:stream};
 						} else if (myShare.isStarted === true)
 							console.log("Transfer already started");
-
 
 					}
 				});
