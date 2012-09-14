@@ -5,7 +5,7 @@
 //= require center
 //= require dropzone
 //= require canonicalize
-//= require UUID
+//= require RandomString
 
 var client;
 

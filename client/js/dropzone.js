@@ -53,7 +53,7 @@ DropZone.onDrop = function (event) {
 			DropZone.file = file;
 
 			// Generate a random hash
-			var hash = UUID.gen();
+			var hash = RandomString.gen(25);
 
 			client.emit('quickshare.drop', hash, file);
 
