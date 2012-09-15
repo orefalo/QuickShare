@@ -42,6 +42,18 @@ module.exports = function () {
 
 	});
 
+
+
+//	app.get('*', function(req, res){
+//		// download already started
+//		res.render('main.html', {
+//			partials:{body:'404.html'},
+//			css:css('peer.css'),
+//			javascript:js('index_peer.js')
+//		});
+//	});
+
+
 	var httpServer = http.createServer(app);
 
 	var binaryServer = require('binaryjs').BinaryServer;

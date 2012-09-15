@@ -3,5 +3,5 @@
 //= require constants
 //= require BG
 //= require center
-//= require canonicalize
+
 
