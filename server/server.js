@@ -43,7 +43,6 @@ module.exports = function () {
 	});
 
 
-
 //	app.get('*', function(req, res){
 //		// download already started
 //		res.render('main.html', {
@@ -71,11 +70,13 @@ module.exports = function () {
 		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
 
-			// there is a meta when we stream a file
+			// it's a file! there is a meta
 			if (meta) {
 
 				var myShare = shares[meta.hash];
 				if (myShare) {
+
+					myShare.isStarted = true;
 
 					var peer = myShare.peer;
 
