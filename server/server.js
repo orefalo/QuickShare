@@ -1,6 +1,6 @@
 module.exports = function () {
 
-
+	// holds hash->{isStarted:true/false, master: binaryjs_stream, peer:response }
 	var shares = {};
 
 	var path = require('path');
@@ -54,9 +54,7 @@ module.exports = function () {
 
 
 	var httpServer = http.createServer(app);
-
-	var binaryServer = require('binaryjs').BinaryServer;
-	var bs = binaryServer({server:httpServer});
+	var bs = require('binaryjs').BinaryServer({server:httpServer});
 
 	// Wait for new user connections
 	bs.on('connection', function (client) {
@@ -73,14 +71,13 @@ module.exports = function () {
 			// it's a file! there is a meta
 			if (meta) {
 
+				/** @type {{isStarted:boolean, master, peer}} **/
 				var myShare = shares[meta.hash];
 				if (myShare) {
 
 					myShare.isStarted = true;
 
-					var peer = myShare.peer;
-
-					peer.writeHead(200, {
+					myShare.peer.writeHead(200, {
 						'Content-Type':meta.type,
 						'Content-Length':meta.size,
 						'Content-Disposition':'attachment; filename=' + meta.name
@@ -95,25 +92,34 @@ module.exports = function () {
 						delete shares[meta.hash];
 					});
 
-					stream.pipe(peer);
+					stream.pipe(myShare.peer);
 
 				}
+
 			} else {
-				stream.on('data', function (data) {
 
-					var event = data.event;
+				stream.on('data',
 
-					// that the initial join event raiser by the master
-					if (event === "join") {
+					/**
+					 *
+					 * @param {{event: string, data:string}} data
+					 */
+						function (data) {
 
-						var myShare = shares[data.hash];
-						if (!myShare) {
-							shares[data.hash] = {isStarted:false, master:stream};
-						} else if (myShare.isStarted === true)
-							console.log("Transfer already started");
+						var event = data.event;
 
-					}
-				});
+						// that the initial join event raiser by the master
+						if (event === "join") {
+
+							/** @type {{isStarted:boolean, master, peer}} **/
+							var myShare = shares[data.hash];
+							if (!myShare) {
+								shares[data.hash] = {isStarted:false, master:stream};
+							} else if (myShare.isStarted === true)
+								console.log("Transfer already started");
+
+						}
+					});
 			}
 
 		});
