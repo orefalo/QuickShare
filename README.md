@@ -1,11 +1,6 @@
 ##TODO
 
-1. swich to sockjs
-2. drag and drop files to add
-3. drag and drop to desktop
-4. multiplex file transfers
-5. chat
-6. security
+1. security
 
 ##INSTALL
 
@@ -16,20 +11,15 @@
 
 ## FLOW
 
-
 Master          Server       Slave
-  |  ready(file)  |            |
-  |-------------->|  ready     |
-  |               |<-----------|
-  |               |            |
-  |               | start(file)|
-  |               |----------->|
-  |  getChunk     |   getChunk |
-  |<--------------|<-----------|
-  | sendChunk     | sendChunk  |
-  |-------------->|----------->|
-  .               .            .
-  .               .            .
-  .               .            .
-  |    done       |    done    |
-  |<--------------|<-----------|
+  |  join(hash)  |            |
+  |------------->|  get/hash  |
+  |              |<-----------|
+  |   start      |            |
+  |<-------------|            |
+  |              |            |
+  | sendChunk    | fileChunk  |
+  |------------->|----------->|
+  | progress upd |            |
+  |<-------------|            |
+  |              |            |
