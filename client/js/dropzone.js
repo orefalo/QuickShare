@@ -7,11 +7,8 @@ var DropZone = DropZone || {};
 DropZone.file = undefined;
 
 DropZone.setSlide = function (index) {
-	$("#slides").css("left", (
-		-270 * index
-		) + "px");
+	$("#slides").css("left", (-270 * index) + "px");
 };
-
 
 DropZone.stopPropagation = function (event) {
 	console.log("stopPropagation");
@@ -42,9 +39,8 @@ DropZone.onDrop = function (event) {
 	var files = event.originalEvent.dataTransfer.files;
 
 	var count = files.length;
-	if (count > 1) {
+	if (count > 1)
 		alert("You may only drop one file at the time...");
-	}
 
 	for (var i = 0; i < count; i++) {
 		if (files[i].size < MAX_FILE_SIZE) {
