@@ -40,7 +40,7 @@ BG.draw = function () {
 			ctx.fill();
 		};
 
-		BG.image.src = "/images/moquette.jpeg";
+		BG.image.src = "//images/moquette.jpeg";
 	}
 };
 

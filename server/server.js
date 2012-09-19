@@ -21,11 +21,13 @@ module.exports = function () {
 		});
 	});
 
-	app.get('/get/:hash', function (req, res) {
 
-		console.log("hash " + req);
+	// /^\/commits\/([A-Za-z0-9]{25})$/
+	app.get('/^\/get\/([A-Za-z0-9]{25})$/', function (req, res) {
 
-		var myShare = shares[req.param('hash')];
+		console.log("hash " + req.params[0]);
+
+		var myShare = shares[req.params[0]];
 		if (myShare && myShare.isStarted === false) {
 
 			myShare.peer = res;
