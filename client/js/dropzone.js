@@ -43,7 +43,7 @@ DropZone.onDrop = function (event) {
 		alert("You may only drop one file at the time...");
 
 	for (var i = 0; i < count; i++) {
-		if (files[i].size < MAX_FILE_SIZE) {
+		//if (files[i].size < MAX_FILE_SIZE) {
 
 			var file = files[i];
 			DropZone.file = file;
@@ -56,9 +56,9 @@ DropZone.onDrop = function (event) {
 			$('#linkURL').attr('href', "/get/" + hash);
 			DropZone.setSlide(1);
 
-		} else {
-			alert("file is too big, needs to be below 5mb.");
-		}
+		//} else {
+		//	alert("file is too big, needs to be below 5mb.");
+		//}
 	}
 
 	return false;
