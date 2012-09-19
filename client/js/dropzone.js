@@ -43,22 +43,17 @@ DropZone.onDrop = function (event) {
 		alert("You may only drop one file at the time...");
 
 	for (var i = 0; i < count; i++) {
-		//if (files[i].size < MAX_FILE_SIZE) {
 
-			var file = files[i];
-			DropZone.file = file;
+		var file = files[i];
+		DropZone.file = file;
 
-			// Generate a random hash
-			var hash = RandomString.gen(25);
+		// Generate a random hash
+		var hash = RandomString.gen(25);
 
-			client.emit('quickshare.drop', hash, file);
+		client.emit('quickshare.drop', hash, file);
 
-			$('#linkURL').attr('href', "/get/" + hash);
-			DropZone.setSlide(1);
-
-		//} else {
-		//	alert("file is too big, needs to be below 5mb.");
-		//}
+		$('#linkURL').attr('href', "/get/" + hash);
+		DropZone.setSlide(1);
 	}
 
 	return false;
