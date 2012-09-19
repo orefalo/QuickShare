@@ -21,9 +21,10 @@ module.exports = function () {
 		});
 	});
 
-	app.get('/get/:hash(^[A-Za-z0-9]{25}$)', function (req, res) {
 
-		var hash = req.param('hash');
+	app.get(/\/get\/([A-Za-z0-9]{25})$/, function (req, res) {
+
+		var hash = req.params[0];
 
 		console.log("hash " + hash);
 
