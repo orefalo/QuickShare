@@ -21,8 +21,6 @@ module.exports = function () {
 		});
 	});
 
-
-	// /^\/commits\/([A-Za-z0-9]{25})$/
 	app.get('/get/:hash(^[A-Za-z0-9]{25}$)', function (req, res) {
 
 		var hash = req.param('hash');
