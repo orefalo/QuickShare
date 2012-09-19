@@ -25,9 +25,12 @@ module.exports = function () {
 	// /^\/commits\/([A-Za-z0-9]{25})$/
 	app.get('/^\/get\/([A-Za-z0-9]{25})$/', function (req, res) {
 
-		console.log("hash " + req.params[0]);
 
-		var myShare = shares[req.params[0]];
+		var hash = req.params[0];
+
+		console.log("hash " + hash);
+
+		var myShare = shares[hash];
 		if (myShare && myShare.isStarted === false) {
 
 			myShare.peer = res;
