@@ -23,7 +23,7 @@ module.exports = function () {
 
 
 	// /^\/commits\/([A-Za-z0-9]{25})$/
-	app.get('/^\/get\/([A-Za-z0-9]{25})$/', function (req, res) {
+	app.get(/\/get\/(^[A-Za-z0-9]{25})$/, function (req, res) {
 
 
 		var hash = req.params[0];
