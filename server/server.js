@@ -22,7 +22,7 @@ module.exports = function () {
 	});
 
 
-	app.get(/\/get\/([A-Za-z0-9]{25})$/, function (req, res) {
+	app.get(/([A-Za-z0-9]{25})$/, function (req, res) {
 
 		var hash = req.params[0];
 
