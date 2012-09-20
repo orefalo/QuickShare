@@ -16,7 +16,11 @@ console.log(addresses);
 
 var params = {
 	port:3000,
-	fontend_server: addresses[0]
+	fontend_server:addresses[0]
 };
+
+var spawn = require('child_process').spawn
+spawn('open', ['http:/' + params.fontend_server + ':' + params.port]);
+
 
 module.exports = params;
