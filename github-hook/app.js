@@ -5,4 +5,4 @@ gith({
 	branch:/PROD/
 }).on('file:all', function (payload) {
 	console.log('Post-receive happened!');
-});
+}); 
