@@ -8,7 +8,7 @@
         "start":"NODE_ENV=production supervisor -w app.js,public app.js"
     },
     "dependencies":{
-        "gith":"*"
+        "githubhook":"*"
     },
     "engine":"node >= 0.8.x"
 }
