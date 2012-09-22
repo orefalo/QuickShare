@@ -3,7 +3,7 @@
 
 USER="web"
 DAEMON="/usr/bin/supervisor"
-ROOT_DIR="/home/web/github-hook"
+ROOT_DIR="/home/web/ugot.com/githubhook"
 
 SERVER="$ROOT_DIR/app.js"
 LOG_FILE="$ROOT_DIR/app.js.log"
