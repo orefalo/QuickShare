@@ -1,4 +1,6 @@
 
+npm install -g supervisor
+
 # Figure the script HOME PATH
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
