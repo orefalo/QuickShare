@@ -1,6 +1,4 @@
 
-npm install -g supervisor
-
 # Figure the script HOME PATH
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
@@ -10,5 +8,6 @@ cd $DIR
 
 npm install
 npm update
+
 cp githubhook /etc/init.d
 

@@ -2,13 +2,13 @@
 . /etc/rc.d/init.d/functions
 
 USER="web"
-DAEMON="/usr/bin/supervisor"
-ROOT_DIR="/home/web/ugot.com/githubhook"
+DAEMON="/usr/local/bin/node"
+ROOT_DIR="/home/web/githubhook"
 
 SERVER="$ROOT_DIR/app.js"
 LOG_FILE="$ROOT_DIR/app.js.log"
 
-LOCK_FILE="/var/lock/subsys/node-server"
+LOCK_FILE="/var/lock/subsys/node-server-githubhook"
 
 do_start()
 {
@@ -43,6 +43,9 @@ case "$1" in
         restart)
                 do_stop
                 do_start
+                ;;
+        clean)
+                rm $LOCK_FILE
                 ;;
         *)
                 echo "Usage: $0 {start|stop|restart}"
