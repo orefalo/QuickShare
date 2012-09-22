@@ -9,6 +9,7 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 	if (!err) {
 
 		// console.log(payload);
+		console.log("Branch "+payload.ref);
 
 		if (payload.ref === "refs/heads/PROD") {
 			console.log("GOOD");
