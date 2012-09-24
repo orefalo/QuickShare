@@ -6,4 +6,3 @@
 6. `npm install`
 7. as root. cp init.d/githubhook /etc/init.d (you may want to edit a few settings in the file first)
 8. as root - service githubhook start
-
