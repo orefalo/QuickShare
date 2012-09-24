@@ -9,10 +9,10 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 	if (!err) {
 
 		// console.log(payload);
-		console.log("Branch " + payload.ref);
+		console.log("Received request for branch " + payload.ref);
 
 		if (payload.ref === "refs/heads/PROD") {
-			console.log("GOOD");
+			console.log("Processing...");
 
 			var exec = require('child_process').exec;
 			var child = exec("./hook.sh", function (error, stdout, stderr) {
