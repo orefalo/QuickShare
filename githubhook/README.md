@@ -1,3 +1,4 @@
+
 1. gen a uuid with bash `uuidgen` command
 2. define the uuid in app.js
 3. defien port in app.js
