@@ -14,9 +14,6 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 		if (payload.ref === "refs/heads/PROD") {
 			console.log("GOOD");
 
-//			var spawn = require('child_process').spawn
-//			spawn('./hook.sh');
-
 			var exec = require('child_process').exec;
 			var child = exec("./hook.sh", function (error, stdout, stderr) {
 				var result = "stdout:" + stdout;
