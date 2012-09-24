@@ -19,7 +19,11 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 
 			var exec = require('child_process').exec;
 			var child = exec("./hook.sh", function (error, stdout, stderr) {
-				var result = '{"stdout":' + stdout + ',"stderr":"' + stderr + '","cmd":"' + cmd + '"}';
+				var result = "stdout:" + stdout;
+				if(stderr) {
+					result+= "\nstderr:";
+					result+=stderr;
+				}
 				console.log(result);
 			});
 
