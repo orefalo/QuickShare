@@ -28,8 +28,6 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 			});
 
 
-		} else {
-			console.log(err);
 		}
 	}
 });
