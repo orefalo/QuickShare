@@ -1,14 +1,11 @@
 {
-    "name":"githubhook",
-    "description":"PROD deployer triggered from github hook",
-    "author":"Olivier Refalo <orefalo@yahoo.com>",
-    "version":"0.0.1",
-    "private":true,
-    "scripts":{
-        "start":"NODE_ENV=production supervisor -w app.js,public app.js"
-    },
-    "dependencies":{
-        "githubhook":"*"
-    },
-    "engine":"node >= 0.8.x"
+  "name": "githubhook-ugot",
+  "description": "a simple github post-receive hook",
+  "author": "Olvier Refalo",
+  "version":"0.0.1",
+  "private":true,
+  "dependencies":{
+    "express": "*"
+  },
+  "engine":"node >= 0.8.x"
 }
