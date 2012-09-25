@@ -1,5 +1,14 @@
 ##TODO
 
+add share link
+  -> cloud
+  -> link
+  -> clipboard
+  -> email
+
+
+
+
 1. security
 
 ##INSTALL
