@@ -116,7 +116,8 @@ $(document).ready(function(){
 	
 	
 	// draggin
-	
+	// OLVIIER - TO REMOVE
+
 	var clickControl = $('#zen .drag');
 	
 	clickControl.grab({
