@@ -1,5 +1,7 @@
 /**
  * Centers the dropzone on the visual area
+ *
+ * TODO: REPLACE WITH FLEX LAYOUT
  */
 $(function () {
 

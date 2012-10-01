@@ -1,5 +1,7 @@
 ##TODO
 
+REPLACE CENTERING WITH FLEX LAYOUT
+
 add share link
   -> cloud
   -> link
