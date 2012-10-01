@@ -2,12 +2,14 @@
  * Create the class holding the action for the dom element drop-zone
  */
 
+var dropZoneSize=350+(2*10)+1;
+
 var DropZone = DropZone || {};
 
 DropZone.file = undefined;
 
 DropZone.setSlide = function (index) {
-	$("#slides").css("left", (-270 * index) + "px");
+	$("#slides").css("left", (-dropZoneSize * index) + "px");
 };
 
 DropZone.stopPropagation = function (event) {
