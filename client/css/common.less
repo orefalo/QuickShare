@@ -1,6 +1,7 @@
 @import url("http://fonts.googleapis.com/css?family=Pacifico");
 @import url("http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700");
 @import "keyframes.less";
+@import "elements.less";
 
 .no-user-select() {
   -webkit-touch-callout: none;
@@ -101,7 +102,7 @@ p span {
   height: @dropZoneSize;
   width: @dropZoneSize;
   border: @dropZoneBorder dashed #cacdd0;
-  border-radius: @dropZoneBorder;
+  .rounded(@dropZoneSize);
 }
 
 #slides {
@@ -122,6 +123,11 @@ p span {
   top: 0;
   left: 0
 }
+
+
+
+// FOOTER
+
 
 #footer {
   font-size: 15px;
