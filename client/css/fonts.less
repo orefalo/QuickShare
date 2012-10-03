@@ -1,0 +1,32 @@
+
+@import url("http://fonts.googleapis.com/css?family=Pacifico");
+@import url("http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700");
+
+@font-face {
+  font-family: 'myfonts';
+  src: url("/fonts/myfonts.eot");
+  src: url("/fonts/myfonts.eot?#iefix") format('embedded-opentype'), url("/fonts/myfonts.woff") format('woff'), url("/fonts/myfonts.ttf") format('truetype'), url("/fonts/myfonts.svg#myfonts") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: 'myfonts';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+//  width: 3em;
+  text-align: center;
+  opacity: 0.7;
+  font-size:250px;
+
+/* fix buttons height */
+/*line-height: 15em;*/
+
+}
+
+.icon-down-1:before { content: '\41'; } /* 'A' */
+.icon-ok-circle:before { content: '\43'; } /* 'C' */
+.icon-export:before { content: '\42'; } /* 'B' */

@@ -1,5 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Pacifico");
-@import url("http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700");
+@import "fonts.less";
 @import "keyframes.less";
 @import "elements.less";
 
@@ -11,7 +10,6 @@
   -ms-user-select: none;
   user-select: none;
 }
-
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -36,7 +34,7 @@ h1 {
   font-family: 'Pacifico', cursive;
   padding-left: 5em;
   color: #939bbb;
-  text-shadow: 0px 2px 2px #000;
+  text-shadow: 0 2px 2px #000;
   position: relative;
   top: -55px;
 }
@@ -55,15 +53,15 @@ p span {
 }
 
 #dropzone {
-
   font-size: 25px;
   text-align: center;
   .no-user-select;
 }
 
 #dropzone.hover {
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-color: #adff2f;
+  border-style: solid;
 }
 
 #dropzone p {
@@ -102,7 +100,7 @@ p span {
   float: left;
   height: @dropZoneSize;
   width: @dropZoneSize;
-  border: @dropZoneBorder dashed #cacdd0;
+  border: @dropZoneBorder dotted #cacdd0;
   .rounded(@dropZoneSize);
 }
 
@@ -125,10 +123,7 @@ p span {
   left: 0
 }
 
-
-
 // FOOTER
-
 
 #footer {
   font-size: 15px;
@@ -144,7 +139,7 @@ p span {
 
 #footer a {
   color: #cfd2e5;
-  text-shadow: 0px 1px 0px #111;
+  text-shadow: 0 1px 0 #111;
   text-decoration: none;
   border-bottom: 1px solid #63697d;
   padding-bottom: 1px;
