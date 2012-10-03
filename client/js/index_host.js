@@ -1,6 +1,5 @@
 
 //= require BG
-//= require center
 //= require dropzone
 //= require canonicalize
 //= require RandomString

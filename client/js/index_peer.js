@@ -1,5 +1,4 @@
 
 //= require BG
-//= require center
 
 
