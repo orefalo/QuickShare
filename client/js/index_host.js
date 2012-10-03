@@ -1,13 +1,17 @@
-//= require constants
+
 //= require BG
 //= require center
 //= require dropzone
 //= require canonicalize
 //= require RandomString
+//= require ../libs/ZeroClipboard
 
 var client;
 
 $(function () {
+
+	ZeroClipboard.setMoviePath( '/zclip/ZeroClipboard.swf' );
+
 	var url = canonicalize(document.location.href);
 
 	client = new BinaryClient('ws://' + url.host);
@@ -22,6 +26,7 @@ $(function () {
 		// triggered by the dropzone
 		client.on('quickshare.drop', function (hash, file) {
 			console.log("quickshare.drop");
+
 			var stream = client.send({event:'join', hash:hash});
 			stream.on('data', function (data) {
 
@@ -40,10 +45,9 @@ $(function () {
 						var percent = Math.round(tx);
 						percentElement.html(percent + "<span>%</span>");
 
-
-						if (percent === 100) {
+						if (percent === 100)
 							DropZone.setSlide(3);
-						}
+
 						console.log(percent + '% complete');
 					});
 
