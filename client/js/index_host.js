@@ -3,13 +3,10 @@
 //= require dropzone
 //= require canonicalize
 //= require RandomString
-//= require ../libs/ZeroClipboard
 
 var client;
 
 $(function () {
-
-	ZeroClipboard.setMoviePath( '/zclip/ZeroClipboard.swf' );
 
 	var url = canonicalize(document.location.href);
 
