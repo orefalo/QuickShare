@@ -2,7 +2,9 @@
  * Create the class holding the action for the dom element drop-zone
  */
 
-var dropZoneSize = 350 + (2 * 10);
+var dropZoneSize = 350 + (
+	2 * 10
+	);
 
 var DropZone = DropZone || {};
 
@@ -50,8 +52,6 @@ DropZone.onDrop = function (event) {
 
 			client.emit('quickshare.drop', hash, file);
 
-			//$('#linkURL').attr('href', "/get/" + hash);
-			DropZone.setSlide(1);
 		}
 	}
 	return false;

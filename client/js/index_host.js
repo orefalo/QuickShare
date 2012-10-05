@@ -23,6 +23,11 @@ $(function () {
 		client.on('quickshare.drop', function (hash, file) {
 			console.log("quickshare.drop");
 
+
+			var link = "/get/" + hash;
+			$('#linkURL').attr('href', link).val(link);
+			DropZone.setSlide(1);
+
 			var stream = client.send({event:'join', hash:hash});
 			stream.on('data', function (data) {
 
