@@ -1,3 +1,5 @@
+///= require libs/gauge
+
 var opts = {
 	lines: 12, // The number of lines to draw
 	angle: 0.35, // The length of each line
