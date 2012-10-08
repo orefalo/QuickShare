@@ -31,6 +31,7 @@ $(function () {
 
 			// fix ui issue on drop
 			dropzone.removeClass("hover");
+			$('#arrow').removeClass("arrow_anim");
 
 			var link = "/get/" + hash;
 			$('#linkURL').attr('href', link).val(link);
@@ -47,6 +48,7 @@ $(function () {
 					var stream = client.send(file, {name:file.name, size:file.size, type:file.type, hash:hash});
 
 					var percentElement = $('#progressStatus');
+
 					var tx = 0;
 					stream.on('data', function (data) {
 
