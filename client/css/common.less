@@ -1,6 +1,5 @@
 @import "fonts.less";
 @import "keyframes.less";
-@import "elements.less";
 
 .no-user-select() {
   -webkit-touch-callout: none;
@@ -66,8 +65,7 @@ p a:hover {
   border-bottom: 1px solid #cfd2e5;
 }
 
-#dropzone {
-//  font-size: 25px;
+#dropzone { //  font-size: 25px;
 //  text-align: center;
   .no-user-select;
 }
@@ -85,12 +83,6 @@ p a:hover {
 
 #arrow {
   position: relative;
-//  -webkit-animation-name: bounce;
-//  -webkit-animation-duration: 2s;
-//  -webkit-animation-iteration-count: infinite;
-//  -webkit-animation-timing-function: ease-in-out;
-//  -webkit-animation-delay: 0;
-//  -webkit-animation-play-state: running;
 }
 
 #panel {
@@ -107,9 +99,7 @@ p a:hover {
 @dropZoneBorder: 10px;
 
 #slides {
-  position: relative;
-//  margin: 1em auto;
-
+  position: relative; //  margin: 1em auto;
   width: (@dropZoneSize + (2 * @dropZoneBorder));
   height: (@dropZoneSize + (2 * @dropZoneBorder));
 
@@ -127,12 +117,12 @@ p a:hover {
   height: @dropZoneSize;
   width: @dropZoneSize;
   border: @dropZoneBorder dotted #cacdd0;
-
+  -webkit-backface-visibility: hidden;
   display: -webkit-flex;
   -webkit-justify-content: center;
   -webkit-align-items: center;
+  border-radius: @dropZoneSize;
 
-  .rounded(@dropZoneSize);
 }
 
 #BG {
