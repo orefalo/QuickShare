@@ -26,7 +26,7 @@ module.exports = function (express, app) {
 			showStack:true
 		}));
 
-		// pretty template rendering
+		// Pretty template rendering
 		app.locals.pretty = true;
 
 		app.use(express.logger('dev'));
@@ -36,7 +36,7 @@ module.exports = function (express, app) {
 
 		config.extend(require(path.join(__dirname, 'conf', 'production.js')));
 
-		// enable template caching
+		// Enable template caching
 		app.locals.cache = true;
 
 		app.use(express.timeout(6000));
@@ -49,7 +49,7 @@ module.exports = function (express, app) {
 		app.set('port', config.port || 3000);
 	}
 
-	// trap runtime exceptions without restart
+	// Trap runtime exceptions without restart
 	app.use(connectDomain(function (err, req, res) {
 		res.end(err.message);
 	}));

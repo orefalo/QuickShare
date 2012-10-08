@@ -1,12 +1,18 @@
-
 //= require BG
 //= require dropzone
 //= require canonicalize
-//= require RandomString
+
 
 var client;
 
 $(function () {
+
+
+	var dropzone = $("#dropzone");
+	dropzone.on("dragover", DropZone.onDragOver);
+	dropzone.on("dragleave", DropZone.onDragLeave);
+	dropzone.on("drop", DropZone.onDrop);
+
 
 	var url = canonicalize(document.location.href);
 

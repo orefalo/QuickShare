@@ -19,7 +19,7 @@ var params = {
 	fontend_server:addresses[0]
 };
 
-var spawn = require('child_process').spawn
+var spawn = require('child_process').spawn;
 spawn('open', ['http:/' + params.fontend_server + ':' + params.port]);
 
 

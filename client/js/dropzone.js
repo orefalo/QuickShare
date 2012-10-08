@@ -2,16 +2,16 @@
  * Create the class holding the action for the dom element drop-zone
  */
 
-var dropZoneSize = 350 + (
-	2 * 10
-	);
+//= require RandomString
+//= require flipper
+
+
+var flipper=new Flipper();
 
 var DropZone = DropZone || {};
 
 DropZone.setSlide = function (index) {
-	$("#slides").css("left", (
-		-dropZoneSize * index
-		) + "px");
+	flipper.setTo(index);
 };
 
 DropZone.stopPropagation = function (event) {
@@ -57,12 +57,3 @@ DropZone.onDrop = function (event) {
 	return false;
 };
 
-
-$(function () {
-
-	var dropzone = $("#dropzone");
-	dropzone.on("dragover", DropZone.onDragOver);
-	dropzone.on("dragleave", DropZone.onDragLeave);
-	dropzone.on("drop", DropZone.onDrop);
-
-});

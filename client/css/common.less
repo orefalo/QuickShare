@@ -100,12 +100,10 @@ p a:hover {
   -webkit-align-content: center;
   -webkit-align-items: center;
   -webkit-align-self: auto;
-
 }
 
 @dropZoneSize: 350px;
 @dropZoneBorder: 10px;
-
 
 #slides {
   position: relative;
@@ -113,6 +111,10 @@ p a:hover {
 
   width: (@dropZoneSize + (2 * @dropZoneBorder));
   height: (@dropZoneSize + (2 * @dropZoneBorder));
+
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s;
+
 }
 
 .slide {
@@ -135,6 +137,26 @@ p a:hover {
   position: absolute;
   top: 0;
   left: 0
+}
+
+.rotated {
+  -webkit-transform: rotateY(180deg);
+}
+
+.hidden {
+  visibility: hidden
+}
+
+.block .front {
+  z-index: 2;
+}
+
+.block .back {
+  z-index: 0;
+}
+
+.back {
+  -webkit-transform: rotateY(180deg);
 }
 
 // FOOTER
