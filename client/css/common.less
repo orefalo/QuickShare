@@ -106,37 +106,28 @@ p a:hover {
 @dropZoneSize: 350px;
 @dropZoneBorder: 10px;
 
-#sliding_container {
-/* 250 + 2 * 10 width : 270 px; */
-  height: @dropZoneSize + (2 * @dropZoneBorder);
-  width: @dropZoneSize + (2 * @dropZoneBorder);
-  margin: 1em auto;
-  overflow: hidden;
+
+#slides {
   position: relative;
+  margin: 1em auto;
+
+  width: (@dropZoneSize + (2 * @dropZoneBorder));
+  height: (@dropZoneSize + (2 * @dropZoneBorder));
 }
 
 .slide {
+
+  position: absolute;
+  top: 0;
+  height: @dropZoneSize;
+  width: @dropZoneSize;
+  border: @dropZoneBorder dotted #cacdd0;
+
   display: -webkit-flex;
   -webkit-justify-content: center;
   -webkit-align-items: center;
 
-  float: left;
-  height: @dropZoneSize;
-  width: @dropZoneSize;
-  border: @dropZoneBorder dotted #cacdd0;
   .rounded(@dropZoneSize);
-}
-
-#slides {
-  position: absolute;
-  left: 0;
-
-/* ( 250 + 2 * 10 ) * 4 */
-  width: 4 * (@dropZoneSize + (2 * @dropZoneBorder));
-  -webkit-transition: all 1.0s ease-in-out;
-  -moz-transition: all 1.0s ease-in-out;
-  -o-transition: all 1.0s ease-in-out;
-  transition: all 1.0s ease-in-out;
 }
 
 #BG {
