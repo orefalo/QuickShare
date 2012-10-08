@@ -29,6 +29,8 @@ $(function () {
 		client.on('quickshare.drop', function (hash, file) {
 			console.log("quickshare.drop");
 
+			// fix ui issue on drop
+			dropzone.removeClass("hover");
 
 			var link = "/get/" + hash;
 			$('#linkURL').attr('href', link).val(link);
