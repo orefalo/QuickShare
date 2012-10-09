@@ -45,8 +45,8 @@ h1 {
 /** TEXT DECORATIONS **/
 
 p {
-  font-size: 35px;
-  line-height: 40px;
+  font-size: 1em;
+  line-height: 1.143em;
   color: #939bbb;
   font-weight: normal;
   text-shadow: 0 2px 2px #000;
@@ -60,7 +60,6 @@ p span {
 p a {
   color: #cfd2e5;
   font-weight: bold;
-  text-shadow: 0 1px 0 #111;
   text-decoration: none;
   border-bottom: 1px solid #6d738f;
   padding-bottom: 1px;
@@ -83,11 +82,6 @@ p a:hover {
   border-style: solid;
 }
 
-#dropzone p {
-  margin-top: 40px;
-  border-radius: 16px;
-}
-
 #arrow {
   position: relative;
 }
@@ -102,8 +96,8 @@ p a:hover {
   -webkit-align-self: auto;
 }
 
-@dropZoneSize: 350px;
-@dropZoneBorder: 10px;
+@dropZoneSize: 1.4em;
+@dropZoneBorder: 0.04em;
 
 #slides {
   position: relative;
@@ -111,11 +105,10 @@ p a:hover {
   height: (@dropZoneSize + (2 * @dropZoneBorder));
   -webkit-transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 1s;
+  font-size: 7.143em;
 }
 
-.slide {
-
-  // that's the symbol font!
+.slide { // that's the symbol font!
   font-family: 'myfonts';
   font-style: normal;
   font-weight: normal;
@@ -123,18 +116,13 @@ p a:hover {
   display: inline-block;
   text-decoration: inherit;
   text-align: center;
-  opacity: 0.9;
-  font-size: 250px;
-
-  // all slide on top of each others
+  opacity: 0.9; //// all slide on top of each others
   position: absolute;
   top: 0;
   height: @dropZoneSize;
   width: @dropZoneSize;
   border: @dropZoneBorder dotted #cacdd0;
-  -webkit-backface-visibility: hidden;
-
-  // center icon
+  -webkit-backface-visibility: hidden; // center icon
   display: -webkit-flex;
   -webkit-justify-content: center;
   -webkit-align-items: center;
@@ -143,16 +131,13 @@ p a:hover {
 }
 
 .share {
-
   border-color: #adff2f;
   border-style: solid;
-
 }
 
-
 .completed {
-  background: #28ee23;
-  border-color: #adff2f;
+  background: #adff2f;
+  border-color: #28ee23;
   border-style: solid;
 }
 
