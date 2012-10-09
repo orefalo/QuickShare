@@ -20,6 +20,8 @@ body {
   text-align: center;
 }
 
+/** TITLES **/
+
 h1 {
   font-weight: 700;
   font-size: 3em;
@@ -37,8 +39,10 @@ h1 {
   color: #939bbb;
   text-shadow: 0 2px 2px #000;
   position: relative;
-  top: -45px;
+  top: -1.5em;
 }
+
+/** TEXT DECORATIONS **/
 
 p {
   font-size: 35px;
@@ -55,9 +59,10 @@ p span {
 
 p a {
   color: #cfd2e5;
+  font-weight: bold;
   text-shadow: 0 1px 0 #111;
   text-decoration: none;
-  border-bottom: 1px solid #63697d;
+  border-bottom: 1px solid #6d738f;
   padding-bottom: 1px;
 }
 
@@ -66,8 +71,9 @@ p a:hover {
   border-bottom: 1px solid #cfd2e5;
 }
 
-#dropzone { //  font-size: 25px;
-//  text-align: center;
+/** DROPZONE **/
+
+#dropzone {
   .no-user-select;
 }
 
@@ -100,30 +106,60 @@ p a:hover {
 @dropZoneBorder: 10px;
 
 #slides {
-  position: relative; //  margin: 1em auto;
+  position: relative;
   width: (@dropZoneSize + (2 * @dropZoneBorder));
   height: (@dropZoneSize + (2 * @dropZoneBorder));
-
   -webkit-transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 1s;
-
 }
 
 .slide {
 
-  background: red;
+  // that's the symbol font!
+  font-family: 'myfonts';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  opacity: 0.9;
+  font-size: 250px;
 
+  // all slide on top of each others
   position: absolute;
   top: 0;
   height: @dropZoneSize;
   width: @dropZoneSize;
   border: @dropZoneBorder dotted #cacdd0;
   -webkit-backface-visibility: hidden;
+
+  // center icon
   display: -webkit-flex;
   -webkit-justify-content: center;
   -webkit-align-items: center;
   border-radius: @dropZoneSize;
 
+}
+
+.share {
+
+  border-color: #adff2f;
+  border-style: solid;
+
+}
+
+
+.completed {
+  background: #28ee23;
+  border-color: #adff2f;
+  border-style: solid;
+}
+
+.errors {
+  background: #f03c3d;
+  border-color: #ff0000;
+  border-style: solid;
 }
 
 #BG {
@@ -153,16 +189,16 @@ p a:hover {
   -webkit-transform: rotateY(180deg);
 }
 
-// FOOTER
+/** FOOTER **/
 
 #footer {
-  font-size: 15px;
+  font-size: 0.4em;
   color: #7b8197;
   position: absolute;
-  bottom: 5px;
+  bottom: 0.33em;
   left: 0;
   width: 100%;
-  height: 25px;
+  height: 1.6em;
   visibility: visible;
   display: block
 }
