@@ -4,14 +4,16 @@
 
 //= require RandomString
 //= require flipper
-
+//= require labels
 
 var flipper=new Flipper();
+var labels=new Labels();
 
 var DropZone = DropZone || {};
 
 DropZone.setSlide = function (index) {
 	flipper.setTo(index);
+	labels.setTo(index);
 };
 
 DropZone.stopPropagation = function (event) {
@@ -45,13 +47,10 @@ DropZone.onDrop = function (event) {
 	else {
 		for (var i = 0; i < count; i++) {
 
-			var file = files[i];
-
 			// Generate a random hash
 			var hash = RandomString.gen(25);
-
+			var file = files[i];
 			client.emit('quickshare.drop', hash, file);
-
 		}
 	}
 	return false;

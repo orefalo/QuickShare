@@ -7,7 +7,6 @@ var client;
 
 $(function () {
 
-
 	var dropzone = $("#dropzone");
 	dropzone.on("dragover", DropZone.onDragOver);
 	dropzone.on("dragleave", DropZone.onDragLeave);
@@ -33,6 +32,7 @@ $(function () {
 			dropzone.removeClass("hover");
 			$('#arrow').removeClass("arrow_anim");
 
+
 			var link = "/get/" + hash;
 			$('#linkURL').attr('href', link).val(link);
 			DropZone.setSlide(1);
@@ -46,10 +46,9 @@ $(function () {
 					DropZone.setSlide(2);
 
 					var stream = client.send(file, {name:file.name, size:file.size, type:file.type, hash:hash});
-
 					var percentElement = $('#progressStatus');
-
 					var tx = 0;
+
 					stream.on('data', function (data) {
 
 						tx += data.tx * 100;
@@ -61,7 +60,6 @@ $(function () {
 
 						console.log(percent + '% complete');
 					});
-
 				}
 			});
 

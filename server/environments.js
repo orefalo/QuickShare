@@ -42,7 +42,6 @@ module.exports = function (express, app) {
 		app.use(express.timeout(6000));
 		app.use(express.limit('5.5mb'));
 		app.use(express.staticCache());
-
 		app.use(express.errorHandler());
 		app.use(express.logger());
 

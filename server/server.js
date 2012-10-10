@@ -14,9 +14,9 @@ module.exports = function () {
 
 	app.get('/', function (req, res) {
 
-		res.render('main.html', {
-			partials:{body:'host.html'},
-			css:css('host.css'),
+		res.render('main_template.html', {
+			partials:{body:'index_host.html'},
+			css:css('index_host.css'),
 			javascript:js('index_host.js')
 		});
 	});
@@ -35,10 +35,10 @@ module.exports = function () {
 			myShare.master.write({event:"start"});
 		} else {
 
-			// download already started
-			res.render('main.html', {
-				partials:{body:'peer.html'},
-				css:css('peer.css'),
+			// Download already started
+			res.render('main_template.html', {
+				partials:{body:'index_peer.html'},
+				css:css('index_peer.css'),
 				javascript:js('index_peer.js')
 			});
 		}
@@ -71,7 +71,7 @@ module.exports = function () {
 		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
 
-			// it's a file! there is a meta
+			// It's a file! there is a meta
 			if (meta) {
 
 				/** @type {{isStarted:boolean, master, peer}} **/
@@ -107,11 +107,11 @@ module.exports = function () {
 					 *
 					 * @param {{event: string, data:string}} data
 					 */
-						function (data) {
+					function (data) {
 
 						var event = data.event;
 
-						// that the initial join event raiser by the master
+						// That's the initial join event raiser by the master
 						if (event === "join") {
 
 							/** @type {{isStarted:boolean, master, peer}} **/
