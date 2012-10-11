@@ -1,7 +1,7 @@
 //= require BG
 //= require dropzone
 //= require canonicalize
-
+//= require ../libs/gauge
 
 var client;
 
@@ -60,6 +60,8 @@ $(function () {
 
 						console.log(percent + '% complete');
 					});
+
+
 				}
 			});
 

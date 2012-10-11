@@ -12,8 +12,10 @@ var Flipper = (
 
 		Flipper.prototype.setTo = function (idx) {
 
-			if (idx === this.index)
-				alert("You cannot call the same screen in a row");
+			if (idx === this.index) {
+				//alert("You cannot call the same screen in a row");
+				return;
+			}
 
 			if (this.lastIndex >= 0)
 				this.sides.eq(this.lastIndex).addClass("hidden");
