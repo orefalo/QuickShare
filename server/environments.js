@@ -1,7 +1,7 @@
 var path = require('path'),
 	cons = require('consolidate'),
 	connectDomain = require('connect-domain'),
-    config = require(path.join(__dirname, 'conf', 'defaults.js'));
+	config = require(path.join(__dirname, 'conf', 'defaults.js'));
 
 module.exports = function (express, app) {
 
@@ -12,8 +12,9 @@ module.exports = function (express, app) {
 
 	app.use(require('connect-assets')({src:"client"}));
 
-	app.use(express.favicon());
 	app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
+//	app.use(express.favicon(path.join(__dirname, 'client', 'public', 'images', 'favicon.ico')));
+	app.use(express.favicon());
 
 	var env = app.get('env');
 
