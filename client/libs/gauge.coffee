@@ -122,7 +122,7 @@ class TextRenderer
 
 	# Default behaviour, override to customize rendering
 	render: (gauge) ->
-		@el.innerHTML = formatNumber(gauge.displayedValue)
+		@el.innerHTML = formatNumber(gauge.displayedValue) + "%"
 
 class AnimatedText extends ValueUpdater
 	displayedValue: 0
