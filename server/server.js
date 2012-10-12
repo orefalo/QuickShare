@@ -1,3 +1,15 @@
+// renders a static page
+function renderStatic(res, page) {
+
+	res.render('main_template.html', {
+		partials:{body:page},
+		css:css('index_static.css'),
+		javascript:js('index_static.js')
+	});
+
+}
+
+
 module.exports = function () {
 
 	// holds hash->{isStarted:true/false, master: binaryjs_stream, peer:response }
@@ -36,25 +48,30 @@ module.exports = function () {
 		} else {
 
 			// Download already started
-			res.render('main_template.html', {
-				partials:{body:'index_peer.html'},
-				css:css('index_peer.css'),
-				javascript:js('index_peer.js')
-			});
+			renderStatic(res, 'alreadyconsumed.html');
 		}
 
 	});
 
+	app.get('/termsofuse', function (req, res) {
+		renderStatic(res, 'termsofuse.html');
+	});
 
-//	app.get('*', function(req, res){
-//		// download already started
-//		res.render('main.html', {
-//			partials:{body:'404.html'},
-//			css:css('peer.css'),
-//			javascript:js('index_peer.js')
-//		});
-//	});
+	app.get('/browserissue', function (req, res) {
+		renderStatic(res, 'browserissue.html');
+	});
 
+	app.get('/about', function (req, res) {
+		renderStatic(res, 'about.html');
+	});
+
+	app.get('/privacypolicy', function (req, res) {
+		renderStatic(res, 'privacypolicy.html');
+	});
+
+	app.use(function (req, res, next) {
+		renderStatic(res, '404.html');
+	});
 
 	var httpServer = http.createServer(app);
 	var bs = require('binaryjs').BinaryServer({server:httpServer});
@@ -104,10 +121,9 @@ module.exports = function () {
 				stream.on('data',
 
 					/**
-					 *
 					 * @param {{event: string, data:string}} data
 					 */
-					function (data) {
+						function (data) {
 
 						var event = data.event;
 

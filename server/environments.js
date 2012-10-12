@@ -13,7 +13,6 @@ module.exports = function (express, app) {
 	app.use(require('connect-assets')({src:"client"}));
 
 	app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
-//	app.use(express.favicon(path.join(__dirname, 'client', 'public', 'images', 'favicon.ico')));
 	app.use(express.favicon());
 
 	var env = app.get('env');
