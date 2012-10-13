@@ -1,3 +1,5 @@
 .idea/
 node_modules
 /builtAssets
+app.js.log
+
