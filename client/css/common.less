@@ -1,5 +1,3 @@
-
-
 .no-user-select() {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -152,9 +150,8 @@ p a:hover {
   border-radius: @dropZoneSize;
 }
 
-.slide canvas {
-  height: 350px;
-  width: 350px;
+.slide canvas { // that's the symbol font!
+  height: @dropZoneSize;
 }
 
 .slide div#progress-textfield {
@@ -165,7 +162,7 @@ p a:hover {
   text-align: center;
   font-weight: bold;
   font-size: 70px;
-  z-index:2;
+  z-index: 2;
 }
 
 .share {
