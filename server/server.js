@@ -19,6 +19,7 @@ module.exports = function () {
 	var fs = require('fs');
 	var http = require('http');
 	var express = require('express');
+	var dateFormat = require('dateformat');
 
 	var app = express();
 
@@ -38,7 +39,7 @@ module.exports = function () {
 
 		var hash = req.params[0];
 
-		console.log("hash " + hash);
+		console.log(dateFormat(new Date(), "isoDateTime") + " hash " + hash);
 
 		var myShare = shares[hash];
 		if (myShare && myShare.isStarted === false) {
@@ -135,7 +136,7 @@ module.exports = function () {
 							if (!myShare) {
 								shares[data.hash] = {isStarted:false, master:stream};
 							} else if (myShare.isStarted === true)
-								console.log("Transfer already started");
+								console.log(dateFormat(new Date(), "isoDateTime") + "Transfer already started");
 
 						}
 					});
@@ -145,6 +146,6 @@ module.exports = function () {
 	});
 
 	httpServer.listen(app.get('port'));
-	console.log("Express " + app.get('env') + " server listening on port " + app.get('port'));
+	console.log(dateFormat(new Date(), "isoDateTime") + " Express " + app.get('env') + " server listening on port " + app.get('port'));
 
 };
