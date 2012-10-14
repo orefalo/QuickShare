@@ -1,6 +1,7 @@
 var githubhook = require('./githubhook.js');
 var path = require('path');
 var exec = require('child_process').exec;
+var dateFormat = require('dateformat');
 
 var servers = {
 	// that's the url webhook to define in github, generate id with uuidgen
@@ -15,8 +16,7 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 		console.log("Received request for branch " + payload.ref);
 
 		if (payload.ref === "refs/heads/PROD") {
-			console.log("Processing...");
-
+			console.log(dateFormat(new Date(), "isoDateTime") + ' Touche...');
 
 			var child = exec(path.join(__dirname, "./hook.sh"), function (error, stdout, stderr) {
 				var result = "stdout:" + stdout;
@@ -26,8 +26,6 @@ var thishook = githubhook(9999, servers, function (err, payload) {
 				}
 				console.log(result);
 			});
-
-
 		}
 	}
 });

@@ -6,9 +6,7 @@ function renderStatic(res, page) {
 		css:css('index_static.css'),
 		javascript:js('index_static.js')
 	});
-
 }
-
 
 module.exports = function () {
 
