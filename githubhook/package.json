@@ -5,7 +5,7 @@
   "version":"0.0.1",
   "private":true,
   "dependencies":{
-    "node-dateformat":"*",
+    "dateformat":"*",
     "express": "*"
   },
   "engine":"node >= 0.8.x"
