@@ -143,7 +143,25 @@ module.exports = function () {
 		});
 	});
 
-	httpServer.listen(app.get('port'));
+	httpServer.listen(app.get('port'), null, null, function () {
+
+//		if (app.get('env') == "production") {
+//
+//			// Assuming this process was started as root, change the owner
+//			try {
+//
+//				console.log('Old User ID: ' + process.getuid() + ', Old Group ID: ' + process.getgid());
+//				process.setuid('web');
+//				process.setgid('users');
+//				console.log('New User ID: ' + process.getuid() + ', New Group ID: ' + process.getgid());
+//
+//			} catch (err) {
+//				console.log('Cowardly refusing to keep the process alive as root.');
+//				process.exit(1);
+//			}
+//		}
+
+	});
 	console.log(dateFormat(new Date(), "isoDateTime") + " Express " + app.get('env') + " server listening on port " + app.get('port'));
 
 };

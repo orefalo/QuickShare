@@ -10,7 +10,7 @@ A complete rewrite a [DirtyShare](https://github.com/Miserlou/DirtyShare) featur
 * Less CSS
 * BinaryJS for cleaner websocket transfers
 * Connect-Asset to dynamically uglify/compress resources in production
-* A slick User Interface
+* A slick UI
 * Production deployment ready
 
 ##Motivation
@@ -18,17 +18,19 @@ A complete rewrite a [DirtyShare](https://github.com/Miserlou/DirtyShare) featur
 1. Learning the **node.js** eco-system
 2. Have an fast way to share large file between two peers
 
-##What does it do?
+###What does it do?
 
-It streams files between two peers using a node.js process as the middle man. The application is heavily dependent upon the latest HTML5 standards: websockets, fileapi, advances css styling and animations.
+It streams files between two peers using a node.js process as the middle man. The application is heavily dependent upon the latest HTML5 standards: websockets, fileapi, drag & drop, advances css styling and animations.
 
 
 ##Installation
 
+Node.js needs to be preinstalled in your system. If you run OSX, install [HomeBrew](http://mxcl.github.com/homebrew/), then type `brew install node`
+
 1. Clone the repo, cd to folder
-2. Install dependencies: npm install
-3. to start in DEV: node app.js
-4. to start in PROD: npm start
+2. Install dependencies: **npm install**
+3. Start in DEV: **node app.js**
+4. Start in PROD: **npm start**
 
 ##Flow
 
@@ -47,10 +49,15 @@ Master          Server       Slave
   |              |            |
 ```
 
+##Production deployment
+
+* The project provides a github hook, that automatically deploys in PRODUCTION upon updates to the PROD branch.
+
+
 ##Limitations
 
 * Only works with Chrome for now
-* Since this is dealing with WebSockets, you can't hide it behind a typical web-proxy. Consider HA-Proxy, kernel port forwarding or direct exposition.
+* Since this is dealing with WebSockets, you can't hide node behind a typical web-proxy. Consider HA-Proxy, kernel port forwarding or direct exposition.
 
 ##Todo
 
@@ -60,5 +67,5 @@ Master          Server       Slave
 
 ##Author
 
-Node.js rocks!  [Olivier Refalo](http://resume.github.com/?orefalo)
+Node.js **Rocks!**  [Olivier Refalo](http://resume.github.com/?orefalo)
 
