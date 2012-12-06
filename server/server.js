@@ -52,20 +52,8 @@ module.exports = function () {
 
 	});
 
-	app.get('/termsofuse', function (req, res) {
-		renderStatic(res, 'termsofuse.html');
-	});
-
 	app.get('/browserissue', function (req, res) {
 		renderStatic(res, 'browserissue.html');
-	});
-
-	app.get('/about', function (req, res) {
-		renderStatic(res, 'about.html');
-	});
-
-	app.get('/privacypolicy', function (req, res) {
-		renderStatic(res, 'privacypolicy.html');
 	});
 
 	app.use(function (req, res, next) {
