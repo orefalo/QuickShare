@@ -1,9 +1,9 @@
-<div id="panel">
-
+<div id="top">
     <h1 class="title">QuickShare</h1>
-
     <h2 class="subtitle">Easy file sharing</h2>
-
+</div>
+<div id="floater"></div>
+<div id="content">
     <div id="slides">
         <div id="dropzone" class="slide hidden">
             <div id="arrow" class="arrow_anim">A</div>
@@ -15,21 +15,24 @@
         </div>
         <div id="confirmation" class="completed slide hidden">C</div>
     </div>
-
-    <div id="labels">
-        <p id="label1" style="opacity: 1;z-index: 0;" class="label"><span>Drop</span> a file, <span>share</span> the
-            link. It's that
-            <span>easy!</span>
-        </p>
-        <p id="label2" style="opacity: 0;z-index: 1;" class="label hidden">Now <span>share</span> this
-            <a id="linkURL" href="link" target="_blank">Link</a> with your
-            <span>peer...</span>
-        </p>
-        <p id="label3" style="opacity: 0;z-index: 2;" class="label hidden">Streaming...<span>Do not close the Browser.</span>
-        </p>
-        <p id="label4" style="opacity: 0;z-index: 3;" class="label hidden">Media <span>shared!</span> <a href="/">Try
-            again</a>
-        </p>
-    </div>
-
 </div>
+<div id="labels" class="after">
+    <p id="label1" style="opacity: 1;z-index: 0;" class="label"><span>Drop</span> a file, <span>share</span> the
+        link. It's that
+        <span>easy!</span>
+    </p>
+
+    <p id="label2" style="opacity: 0;z-index: 1;" class="label hidden">Now <span>share</span> this
+        <a id="linkURL" href="link" target="_blank">Link</a> with your
+        <span>peer...</span>
+    </p>
+
+    <p id="label3" style="opacity: 0;z-index: 2;" class="label hidden">
+        Streaming...<span>Do not close the Browser.</span>
+    </p>
+
+    <p id="label4" style="opacity: 0;z-index: 3;" class="label hidden">Media <span>shared!</span> <a href="/">Try
+        again</a>
+    </p>
+</div>
+
