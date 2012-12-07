@@ -17,12 +17,11 @@ body {
   text-align: center;
 }
 
+/* just to be sure we are full screen */
 html, body {
   width: 100%;
   height: 100%;
 }
-
-/* just to be sure these are full screen*/
 
 /***********/
 /** TITLE **/
@@ -84,6 +83,8 @@ p a:hover {
 @dropZoneSize: 340px;
 @dropZoneBorder: 10px;
 @dropZoneTotal: (@dropZoneSize + (2 * @dropZoneBorder));
+@dropZoneIconFontSize: 250px;
+@dropZoneIconOffset: (@dropZoneTotal - @dropZoneIconFontSize) / 2;
 
 #top {
   position: relative;
@@ -119,8 +120,9 @@ p a:hover {
   vertical-align: center;
 }
 
+/* all labels are on top of each others */
 .label {
-  opacity: 0; // all slide on top of each others
+  opacity: 0;
   position: absolute;
   top: 2em;
   width: 100%;
@@ -149,22 +151,24 @@ p a:hover {
   border-style: solid;
 }
 
-// the moving arrow
-#arrow {
+/* position icons in center of dropzone */
+.icon {
+  top: @dropZoneIconOffset;
   position: relative;
 }
 
-// slides overlap one another and flip on action
+/* slides overlap one another and flip on action */
 #slides {
   position: relative;
   width: @dropZoneTotal;
   height: @dropZoneTotal;
+  font-size: @dropZoneIconFontSize;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 1s;
-  font-size: 7.143em;
 }
 
-.slide { // that's the symbol font!
+.slide {
+/* that's the symbol font! */
   font-family: 'myfonts';
   font-style: normal;
   font-weight: normal;
@@ -172,19 +176,19 @@ p a:hover {
   display: inline-block;
   text-decoration: inherit;
   text-align: center;
-  opacity: 0.9; // all slide on top of each others
+  opacity: 0.9; /* all slide on top of each others */
   position: absolute;
   top: 0;
   height: @dropZoneSize;
   width: @dropZoneSize;
   border: @dropZoneBorder dotted #cacdd0;
-  -webkit-backface-visibility: hidden; // center icon
+  -webkit-backface-visibility: hidden; /* center icon */
   -webkit-justify-content: center;
   -webkit-align-items: center;
   border-radius: @dropZoneSize;
 }
 
-// that's the symbol font!
+/* that's the symbol font! */
 .slide canvas {
   height: @dropZoneSize;
 }
