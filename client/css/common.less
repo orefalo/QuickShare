@@ -17,16 +17,16 @@ body {
   text-align: center;
 }
 
-html, body { width:100%; height:100%; } /* just to be sure these are full screen*/
-
-/** TITLES **/
-
-h1 {
-  font-weight: 700;
-  font-size: 3em;
-  color: #FFFFFF;
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+html, body {
+  width: 100%;
+  height: 100%;
 }
+
+/* just to be sure these are full screen*/
+
+/***********/
+/** TITLE **/
+/***********/
 
 .title {
   padding-top: 1em;
@@ -41,7 +41,15 @@ h1 {
   top: -1.5em;
 }
 
+/**********************/
 /** TEXT DECORATIONS **/
+/**********************/
+h1 {
+  font-weight: 700;
+  font-size: 3em;
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+}
 
 p {
   font-size: 1em;
@@ -69,16 +77,39 @@ p a:hover {
   border-bottom: 1px solid #cfd2e5;
 }
 
+/******************/
 /** OTHER PANELS **/
+/******************/
 
-#panel {
-  display: -webkit-flex;
-  -webkit-flex: 1 0 auto;
-  -webkit-flex-direction: column;
-  -webkit-justify-content: center;
-  -webkit-align-content: center;
-  -webkit-align-items: center;
-  -webkit-align-self: auto;
+@dropZoneSize: 340px;
+@dropZoneBorder: 10px;
+@dropZoneTotal: (@dropZoneSize + (2 * @dropZoneBorder));
+
+#top {
+  position: relative;
+  float: right;
+  width: 100%;
+  text-align: center;
+}
+
+#floater {
+  height: 50%;
+  margin-bottom: -@dropZoneTotal;
+  position: relative;
+}
+
+#content {
+  clear: both;
+  height: @dropZoneTotal;
+  width: @dropZoneTotal;
+  position: relative;
+  margin: 0 auto;
+  text-align: center
+}
+
+.after {
+  text-align: center;
+  margin: 0 auto;
 }
 
 #labels {
@@ -101,10 +132,12 @@ p a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  display:block;
+  display: block;
 }
 
+/**************/
 /** DROPZONE **/
+/**************/
 
 #dropzone {
   .no-user-select;
@@ -116,17 +149,16 @@ p a:hover {
   border-style: solid;
 }
 
+// the moving arrow
 #arrow {
   position: relative;
 }
 
-@dropZoneSize: 1.4em;
-@dropZoneBorder: 0.04em;
-
+// slides overlap one another and flip on action
 #slides {
   position: relative;
-  width: (@dropZoneSize + (2 * @dropZoneBorder));
-  height: (@dropZoneSize + (2 * @dropZoneBorder));
+  width: @dropZoneTotal;
+  height: @dropZoneTotal;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 1s;
   font-size: 7.143em;
@@ -147,13 +179,13 @@ p a:hover {
   width: @dropZoneSize;
   border: @dropZoneBorder dotted #cacdd0;
   -webkit-backface-visibility: hidden; // center icon
-  display: -webkit-flex;
   -webkit-justify-content: center;
   -webkit-align-items: center;
   border-radius: @dropZoneSize;
 }
 
-.slide canvas { // that's the symbol font!
+// that's the symbol font!
+.slide canvas {
   height: @dropZoneSize;
 }
 
@@ -205,19 +237,9 @@ p a:hover {
   -webkit-transform: rotateY(180deg);
 }
 
-.threecols {
-  -moz-column-count: 3;
-  -webkit-column-count: 3;
-  column-count: 3;
-
-  -moz-column-gap: 1em;
-  -webkit-column-gap: 1em;
-  column-gap: 1em;
-
-}
-
+/************/
 /** FOOTER **/
-
+/************/
 #footer {
   font-size: 0.4em;
   color: #7b8197;
