@@ -7,7 +7,6 @@ var client;
 
 $(function () {
 
-
 	// SETUP THE GAUGE
 	var opts = {
 		lines: 12, // The number of lines to draw
@@ -53,15 +52,16 @@ $(function () {
 
 		// triggered by the dropzone
 		client.on('quickshare.drop', function (hash, file) {
-			console.log("quickshare.drop");
 
 			// fix ui issue on drop
 			dropzone.removeClass("hover");
 			$('#arrow').removeClass("arrow_anim");
 
+			$('#linkURL').bind('mousedown', function() {
+				var link = url + "get/" + hash;
+				window.prompt('Press CTRL+C, then ENTER',link); return false;
+			});
 
-			var link = "/get/" + hash;
-			$('#linkURL').attr('href', link).val(link);
 			DropZone.setSlide(1);
 
 			var stream = client.send({event:'join', hash:hash});
@@ -86,7 +86,6 @@ $(function () {
 						if (percent === 100)
 							DropZone.setSlide(3);
 
-						console.log(percent + '% complete');
 					});
 
 
