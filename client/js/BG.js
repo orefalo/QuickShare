@@ -15,7 +15,6 @@ BG.draw = function () {
 		BG.image.onload = function () {
 
 			var canvas = $("#BG")[0];
-			var ctx = canvas.getContext("2d");
 
 			var width = $(window).width();
 			var height = $(window).height();
@@ -24,6 +23,8 @@ BG.draw = function () {
 
 			canvas.width = width;
 			canvas.height = height;
+
+			var ctx = canvas.getContext("2d");
 
 			// set the pattern
 			ctx.fillStyle = ctx.createPattern(BG.image, "repeat");
