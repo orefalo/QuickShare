@@ -34,8 +34,17 @@
 .animation (...) {
   -webkit-animation: @arguments;
   -moz-animation: @arguments;
+  -ms-animation: @arguments;
   -o-animation: @arguments;
   animation: @arguments;
+}
+
+.animation-name (@name) {
+  -webkit-animation-name: @name;
+  -moz-animation-name: @name;
+  -ms-animation-name: @name;
+  -o-animation-name: @name;
+  animation-name: @name;
 }
 
 .animation-fill-mode(@string) {
