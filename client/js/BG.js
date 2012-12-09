@@ -42,6 +42,7 @@ BG.draw = function () {
 		};
 
 		BG.image.src = "/images/moquette.jpeg";
+
 	}
 };
 

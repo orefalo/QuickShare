@@ -1,17 +1,83 @@
+/************************/
+/***** BOUNCE ARROW *****/
+/************************/
 
-@-webkit-keyframes bounce {
+.mixi-bounce() {
   0% { top: 60px; }
   50% { top: 20px;}
   100%{ top: 60px; }
 }
 
+@-webkit-keyframes bounce {.mixi-bounce;}
+@-moz-keyframes bounce {.mixi-bounce;}
+@-ms-keyframes bounce {.mixi-bounce;}
+@-o-keyframes bounce {.mixi-bounce;}
+@keyframes bounce {.mixi-bounce;}
+
 .arrow_anim {
+  .animation(bounce, 2s, ease-in-out, infinite);
+}
 
-  -webkit-animation-name: bounce;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-delay: 0;
-  -webkit-animation-play-state: running;
 
+// Used to fade in/out the labels
+
+.animated {
+  .animation-fill-mode(both);
+  .animation-duration(1s);
+}
+
+.animated.hinge {
+  .animation-duration(2s);
+}
+
+/************************/
+/***** FADE IN UP *******/
+/************************/
+
+.mixi-fadeinup() {
+  0% {
+    opacity: 0;
+    .transform(translateY(20px));
+  }
+
+  100% {
+    opacity: 1;
+    .transform(translateY(0));
+  }
+}
+
+@-webkit-keyframes fadeInUp {.mixi-fadeinup;}
+@-moz-keyframes fadeInUp {.mixi-fadeinup;}
+@-ms-keyframes fadeInUp {.mixi-fadeinup;}
+@-o-keyframes fadeInUp {.mixi-fadeinup;}
+@keyframes fadeInUp {.mixi-fadeinup;}
+
+.fadeInUp {
+  .animation(fadeInUp, 1s, ease-in, 0);
+}
+
+/************************/
+/***** FADE IN DOWN *****/
+/************************/
+
+.mixi-fadeindown() {
+  0% {
+    opacity: 0;
+    .transform(translateY(0));
+  }
+
+  100% {
+    opacity: 1;
+    .transform(translateY(20px));
+  }
+}
+
+@-webkit-keyframes fadeOutDown {.mixi-fadeindown;}
+@-moz-keyframes fadeOutDown {.mixi-fadeindown;}
+@-ms-keyframes fadeOutDown {.mixi-fadeindown;}
+@-o-keyframes fadeOutDown {.mixi-fadeindown;}
+@keyframes fadeOutDown {.mixi-fadeindown;}
+
+.fadeOutDown {
+  .animation(fadeOutDown, 1s, ease-out, 0);
 }
