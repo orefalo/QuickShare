@@ -177,14 +177,11 @@ p {
   text-decoration:             inherit;
   text-align:                  center;
   opacity:                     0.9; /* all slide on top of each others */
-
   height:                      @dropZoneSize;
   width:                       @dropZoneSize;
   border:                      @dropZoneBorder dotted #cacdd0;
-  -webkit-backface-visibility: hidden; /* center icon */
-  -webkit-justify-content:     center;
-  -webkit-align-items:         center;
-  border-radius:               @dropZoneSize;
+  .backface-visibility;
+  .rounded-corners(@dropZoneSize);
 
   canvas {
     position: absolute;
