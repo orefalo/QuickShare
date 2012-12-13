@@ -1,4 +1,4 @@
 module.exports = {
 	port:3000,
-	fontend_server:"www.ugot.com"
+	frontend_server:"www.ugot.com"
 }
