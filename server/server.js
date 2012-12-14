@@ -37,7 +37,7 @@ module.exports = function () {
 
 		var hash = req.params[0];
 
-		console.log(dateFormat(new Date(), "isoDateTime") + " hash " + hash);
+		console.log(dateFormat(new Date(), "isoDateTime") + " getHash " + hash);
 
 		var myShare = shares[hash];
 		if (myShare && myShare.isStarted === false) {
@@ -75,7 +75,7 @@ module.exports = function () {
 		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
 
-			// It's a file! there is a meta
+			// It's a file request! there is a meta
 			if (meta) {
 
 				/** @type {{isStarted:boolean, master, peer}} **/
@@ -113,11 +113,10 @@ module.exports = function () {
 					/**
 					 * @param {{event: string, data:string}} data
 					 */
-						function (data) {
+					function (data) {
 
 							var event = data.event;
 
-							console.log("join");
 							// That's the initial join event raiser by the master
 							if (event === "join") {
 
@@ -125,7 +124,7 @@ module.exports = function () {
 								var myShare = shares[data.hash];
 								if (!myShare) {
 									shares[data.hash] = {isStarted:false, master:stream};
-									console.log("Ready " + meta.hash);
+									console.log("Ready " + data.hash);
 								}
 								else if (myShare.isStarted === true)
 									console.log(dateFormat(new Date(), "isoDateTime") + "Transfer already started");

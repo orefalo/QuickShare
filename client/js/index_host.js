@@ -41,6 +41,8 @@ $(function () {
 
 	var url = canonicalize(document.location.href);
 
+	console.log("Client is at "+url.host);
+
 	client = new BinaryClient('ws://' + url.host);
 
 	client.on('open', function () {
@@ -73,7 +75,6 @@ $(function () {
 					DropZone.setSlide(2);
 
 					var stream = client.send(file, {name:file.name, size:file.size, type:file.type, hash:hash});
-					//var percentElement = $('#progressStatus');
 					var tx = 0;
 
 					stream.on('data', function (data) {
@@ -81,7 +82,6 @@ $(function () {
 						tx += data.tx * 100;
 						var percent = Math.round(tx);
 						gauge.set(percent);
-						//percentElement.html(percent + "<span>%</span>");
 
 						if (percent === 100)
 							DropZone.setSlide(3);

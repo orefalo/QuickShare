@@ -13,7 +13,7 @@
         "whiskers":"0.2.x",
         "connect-assets":"2.3.x",
         "connect-domain":"*",
-        "binaryjs":"0.1.x",
+        "binaryjs":"*",
         "less":"1.3.x",
         "supervisor":"0.4.x",
         "coffee-script":"*",
