@@ -80,9 +80,12 @@ module.exports = function () {
 
 				/** @type {{isStarted:boolean, master, peer}} **/
 				var myShare = shares[meta.hash];
+
 				if (myShare) {
 
 					myShare.isStarted = true;
+
+					console.log("Streaming " + meta.hash);
 
 					myShare.peer.writeHead(200, {
 						'Content-Type':meta.type,
@@ -112,19 +115,22 @@ module.exports = function () {
 					 */
 						function (data) {
 
-						var event = data.event;
+							var event = data.event;
 
-						// That's the initial join event raiser by the master
-						if (event === "join") {
+							console.log("join");
+							// That's the initial join event raiser by the master
+							if (event === "join") {
 
-							/** @type {{isStarted:boolean, master, peer}} **/
-							var myShare = shares[data.hash];
-							if (!myShare) {
-								shares[data.hash] = {isStarted:false, master:stream};
-							} else if (myShare.isStarted === true)
-								console.log(dateFormat(new Date(), "isoDateTime") + "Transfer already started");
+								/** @type {{isStarted:boolean, master, peer}} **/
+								var myShare = shares[data.hash];
+								if (!myShare) {
+									shares[data.hash] = {isStarted:false, master:stream};
+									console.log("Ready " + meta.hash);
+								}
+								else if (myShare.isStarted === true)
+									console.log(dateFormat(new Date(), "isoDateTime") + "Transfer already started");
 
-						}
+							}
 					});
 			}
 
