@@ -1,0 +1,81 @@
+.rounded-corners(@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.animation (...) {
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  -ms-animation: @arguments;
+  -o-animation: @arguments;
+  animation: @arguments;
+}
+
+.animation-name (@name) {
+  -webkit-animation-name: @name;
+  -moz-animation-name: @name;
+  -ms-animation-name: @name;
+  -o-animation-name: @name;
+  animation-name: @name;
+}
+
+.animation-fill-mode(@string) {
+  -webkit-animation-fill-mode: @string;
+  -moz-animation-fill-mode: @string;
+  -ms-animation-fill-mode: @string;
+  -o-animation-fill-mode: @string;
+  animation-fill-mode: @string;
+}
+
+.animation-duration(@string) {
+  -webkit-animation-duration: @string;
+  -moz-animation-duration: @string;
+  -ms-animation-duration: @string;
+  -o-animation-duration: @string;
+  animation-duration: @string;
+}
+
+.transition(@transition) {
+  -webkit-transition: -webkit-@transition;
+  -moz-transition: -moz-@transition;
+  -ms-transition: -ms-@transition;
+  -o-transition: -o-@transition;
+  transition: @transition;
+
+}
+
+.backface-visibility() {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:    hidden;
+  -ms-backface-visibility:     hidden;
+  -o-backface-visibility:      hidden;
+  backface-visibility:         hidden;
+}
+
+.transform(@string) {
+  -webkit-transform: @string;
+  -moz-transform: @string;
+  -ms-transform: @string;
+  -o-transform: @string;
+  transform: @string;
+}
+
+.transform-style(@style:preserve-3d) {
+  -webkit-transform-style: @style;
+  -moz-transform-style: @style;
+  -o-transform-style: @style;
+  -ms-transform-style: @style;
+  transform-style: @style;
+}
+
+.no-user-select() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

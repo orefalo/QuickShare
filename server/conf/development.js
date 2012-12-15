@@ -16,11 +16,12 @@ console.log(addresses);
 
 var params = {
 	port:3000,
-	fontend_server:addresses[0]
+	frontend_server:addresses[0]
 };
 
+// Launch default browser to URL
 var spawn = require('child_process').spawn;
-spawn('open', ['http:/' + params.fontend_server + ':' + params.port]);
+spawn('open', ['http:/' + params.frontend_server + ':' + params.port]);
 
 
 module.exports = params;

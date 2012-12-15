@@ -1,28 +1,18 @@
-.no-user-select() {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 html {
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  font: 2em 'PT Sans Narrow', "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-  color: white;
+  font:       2em 'PT Sans Narrow', "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  color:      white;
   text-align: center;
 }
 
+/* just to be sure we are full screen */
 html, body {
-  width: 100%;
+  width:  100%;
   height: 100%;
 }
-
-/* just to be sure these are full screen*/
 
 /***********/
 /** TITLE **/
@@ -33,12 +23,12 @@ html, body {
 }
 
 .subtitle {
-  font-family: 'Pacifico', cursive;
+  font-family:  'Pacifico', cursive;
   padding-left: 5em;
-  color: #939bbb;
-  text-shadow: 0 2px 2px #000;
-  position: relative;
-  top: -1.5em;
+  color:        #939bbb;
+  text-shadow:  0 2px 2px #000;
+  position:     relative;
+  top:          -1.5em;
 }
 
 /**********************/
@@ -46,35 +36,35 @@ html, body {
 /**********************/
 h1 {
   font-weight: 700;
-  font-size: 3em;
-  color: #FFFFFF;
+  font-size:   3em;
+  color:       #FFFFFF;
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
 }
 
 p {
-  font-size: 1em;
+  font-size:   1em;
   line-height: 1.143em;
-  color: #939bbb;
+  color:       #939bbb;
   font-weight: normal;
   text-shadow: 0 2px 2px #000;
-}
 
-p span {
-  font-weight: bold;
-  color: #fff;
-}
+  span {
+    font-weight: bold;
+    color:       #fff;
+  }
 
-p a {
-  color: #cfd2e5;
-  font-weight: bold;
-  text-decoration: none;
-  border-bottom: 1px solid #6d738f;
-  padding-bottom: 1px;
-}
+  a {
+    color:           #cfd2e5;
+    font-weight:     bold;
+    text-decoration: none;
+    border-bottom:   1px solid #6d738f;
+    padding-bottom:  1px;
 
-p a:hover {
-  color: #fff;
-  border-bottom: 1px solid #cfd2e5;
+    &:hover {
+      color:         #fff;
+      border-bottom: 1px solid #cfd2e5;
+    }
+  }
 }
 
 /******************/
@@ -84,55 +74,58 @@ p a:hover {
 @dropZoneSize: 340px;
 @dropZoneBorder: 10px;
 @dropZoneTotal: (@dropZoneSize + (2 * @dropZoneBorder));
+@dropZoneIconFontSize: 250px;
+@dropZoneIconOffset: (@dropZoneTotal - @dropZoneIconFontSize) / 2;
 
 #top {
-  position: relative;
-  float: right;
-  width: 100%;
+  position:   relative;
+  float:      right;
+  width:      100%;
   text-align: center;
 }
 
 #floater {
-  height: 50%;
-  margin-bottom: -@dropZoneTotal;
-  position: relative;
+/** alternatives: height: 35%; margin-bottom: -@dropZoneTotal; **/
+  position:      relative;
+  height:        50%;
+  margin-bottom: -@dropZoneTotal/2;
 }
 
 #content {
-  clear: both;
-  height: @dropZoneTotal;
-  width: @dropZoneTotal;
-  position: relative;
-  margin: 0 auto;
+  position:   relative;
+  height:     @dropZoneTotal;
+  width:      @dropZoneTotal;
+  margin:     0 auto;
   text-align: center
+  clear:      both;
 }
 
 .after {
   text-align: center;
-  margin: 0 auto;
+  margin:     0 auto;
 }
 
 #labels {
-  padding-top: 2em;
-  position: relative;
-  width: 100%;
+  position:       relative;
+  width:          100%;
   vertical-align: center;
+  padding-top:    2em;
 }
 
+/* all labels are on top of each others */
 .label {
-  opacity: 0; // all slide on top of each others
-  position: absolute;
-  top: 2em;
-  width: 100%;
+  position:   absolute;
+  top:        2em;
+  width:      100%;
   text-align: center;
+  opacity:    0;
 }
 
 #BG {
-  z-index: -1;
   position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
+  top:      0;
+  left:     0;
+  z-index:  -1;
 }
 
 /**************/
@@ -141,63 +134,75 @@ p a:hover {
 
 #dropzone {
   .no-user-select;
+
+  &.hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color:     #adff2f;
+    border-style:     solid;
+  }
 }
 
-#dropzone.hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-color: #adff2f;
-  border-style: solid;
-}
-
-// the moving arrow
-#arrow {
+/* position icons in center of dropzone */
+.icon {
   position: relative;
+  top:      @dropZoneIconOffset;
 }
 
-// slides overlap one another and flip on action
+/* slides overlap one another and flip on action */
 #slides {
-  position: relative;
-  width: @dropZoneTotal;
-  height: @dropZoneTotal;
-  -webkit-transform-style: preserve-3d;
+  position:                relative;
+  width:                   @dropZoneTotal;
+  height:                  @dropZoneTotal;
+  font-size:               @dropZoneIconFontSize;
+  .transform-style;
+
   -webkit-transition: -webkit-transform 1s;
-  font-size: 7.143em;
+  -moz-transition: -moz-transform 1s;
+  -ms-transition: -ms-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
+
 }
 
-.slide { // that's the symbol font!
-  font-family: 'myfonts';
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  display: inline-block;
-  text-decoration: inherit;
-  text-align: center;
-  opacity: 0.9; // all slide on top of each others
-  position: absolute;
-  top: 0;
-  height: @dropZoneSize;
-  width: @dropZoneSize;
-  border: @dropZoneBorder dotted #cacdd0;
-  -webkit-backface-visibility: hidden; // center icon
-  -webkit-justify-content: center;
-  -webkit-align-items: center;
-  border-radius: @dropZoneSize;
-}
+.slide {
+  position:                    absolute;
+  top:                         0;
+  left:                        0;
+/* that's the symbol font! */
+  font-family:                 'myfonts';
+  font-style:                  normal;
+  font-weight:                 normal;
+  speak:                       none;
+  display:                     inline-block;
+  text-decoration:             inherit;
+  text-align:                  center;
+  opacity:                     0.9; /* all slide on top of each others */
+  height:                      @dropZoneSize;
+  width:                       @dropZoneSize;
+  border:                      @dropZoneBorder dotted #cacdd0;
+  .backface-visibility;
+  .rounded-corners(@dropZoneSize);
 
-// that's the symbol font!
-.slide canvas {
-  height: @dropZoneSize;
-}
+  canvas {
+    position: absolute;
+    left:     0;
+    top:      0;
+    right:    0;
+    height:   @dropZoneSize;
+    width:    @dropZoneSize;
+  }
 
-.slide div#progress-textfield {
-  position: absolute;
-  top: 135px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-weight: bold;
-  font-size: 70px;
-  z-index: 2;
+  div#progress-textfield {
+    position:    absolute;
+    top:         135px;
+    left:        0;
+    right:       0;
+    text-align:  center;
+    font-weight: bold;
+    font-size:   70px;
+    z-index:     2;
+  }
+
 }
 
 .share {
@@ -206,61 +211,64 @@ p a:hover {
 }
 
 .completed {
-  background: #adff2f;
+  background:   #adff2f;
   border-color: #28ee23;
   border-style: solid;
 }
 
 .errors {
-  background: #f03c3d;
+  background:   #f03c3d;
   border-color: #ff0000;
   border-style: solid;
 }
 
 .rotated {
-  -webkit-transform: rotateY(180deg);
+  .transform(rotateY(180deg));
 }
 
 .hidden {
   visibility: hidden;
 }
 
-.block .front {
-  z-index: 2;
-}
+.block {
 
-.block .back {
-  z-index: 0;
+  .front {
+    z-index: 2;
+  }
+
+  .back {
+    z-index: 0;
+  }
 }
 
 .back {
-  -webkit-transform: rotateY(180deg);
+  .transform(rotateY(180deg));
 }
 
 /************/
 /** FOOTER **/
 /************/
 #footer {
-  font-size: 0.4em;
-  color: #7b8197;
-  position: absolute;
-  bottom: 0.33em;
-  left: 0;
-  width: 100%;
-  height: 1.6em;
+  font-size:  0.4em;
+  color:      #7b8197;
+  position:   absolute;
+  bottom:     0.33em;
+  left:       0;
+  width:      100%;
+  height:     1.6em;
   visibility: visible;
-  display: block;
-}
+  display:    block;
 
-#footer a {
-  color: #cfd2e5;
-  text-shadow: 0 1px 0 #111;
-  text-decoration: none;
-  border-bottom: 1px solid #63697d;
-  padding-bottom: 1px;
-}
+  a {
+    color:           #cfd2e5;
+    text-shadow:     0 1px 0 #111;
+    text-decoration: none;
+    border-bottom:   1px solid #63697d;
+    padding-bottom:  1px;
 
-#footer a:hover {
-  color: #fff;
-  border-bottom: 1px solid #cfd2e5;
+    &:hover {
+      color:         #fff;
+      border-bottom: 1px solid #cfd2e5;
+    }
+  }
 }

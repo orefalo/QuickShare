@@ -17,7 +17,6 @@ DropZone.setSlide = function (index) {
 };
 
 DropZone.stopPropagation = function (event) {
-	console.log("stopPropagation");
 	event.stopPropagation();
 	event.preventDefault();
 	return false;

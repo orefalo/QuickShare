@@ -7,7 +7,6 @@ var client;
 
 $(function () {
 
-
 	// SETUP THE GAUGE
 	var opts = {
 		lines: 12, // The number of lines to draw
@@ -42,6 +41,8 @@ $(function () {
 
 	var url = canonicalize(document.location.href);
 
+	console.log("Client is at "+url.host);
+
 	client = new BinaryClient('ws://' + url.host);
 
 	client.on('open', function () {
@@ -53,15 +54,16 @@ $(function () {
 
 		// triggered by the dropzone
 		client.on('quickshare.drop', function (hash, file) {
-			console.log("quickshare.drop");
 
 			// fix ui issue on drop
 			dropzone.removeClass("hover");
 			$('#arrow').removeClass("arrow_anim");
 
+			$('#linkURL').bind('mousedown', function() {
+				var link = url + "get/" + hash;
+				window.prompt('Press CTRL+C, then ENTER',link); return false;
+			});
 
-			var link = "/get/" + hash;
-			$('#linkURL').attr('href', link).val(link);
 			DropZone.setSlide(1);
 
 			var stream = client.send({event:'join', hash:hash});
@@ -73,7 +75,6 @@ $(function () {
 					DropZone.setSlide(2);
 
 					var stream = client.send(file, {name:file.name, size:file.size, type:file.type, hash:hash});
-					//var percentElement = $('#progressStatus');
 					var tx = 0;
 
 					stream.on('data', function (data) {
@@ -81,12 +82,10 @@ $(function () {
 						tx += data.tx * 100;
 						var percent = Math.round(tx);
 						gauge.set(percent);
-						//percentElement.html(percent + "<span>%</span>");
 
 						if (percent === 100)
 							DropZone.setSlide(3);
 
-						console.log(percent + '% complete');
 					});
 
 

@@ -1,6 +1,6 @@
 module.exports = {
 	port:3000,
-	fontend_server:"localhost",
+	frontend_server:"localhost",
 
 	extend:function (obj) {
 		for (var i in obj)

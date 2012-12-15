@@ -37,7 +37,7 @@ module.exports = function () {
 
 		var hash = req.params[0];
 
-		console.log(dateFormat(new Date(), "isoDateTime") + " hash " + hash);
+		console.log(dateFormat(new Date(), "isoDateTime") + " getHash " + hash);
 
 		var myShare = shares[hash];
 		if (myShare && myShare.isStarted === false) {
@@ -75,14 +75,17 @@ module.exports = function () {
 		// Incoming stream from browsers: can be a file stream or an event stream
 		client.on('stream', function (stream, meta) {
 
-			// It's a file! there is a meta
+			// It's a file request! there is a meta
 			if (meta) {
 
 				/** @type {{isStarted:boolean, master, peer}} **/
 				var myShare = shares[meta.hash];
+
 				if (myShare) {
 
 					myShare.isStarted = true;
+
+					console.log("Streaming " + meta.hash);
 
 					myShare.peer.writeHead(200, {
 						'Content-Type':meta.type,
@@ -110,21 +113,23 @@ module.exports = function () {
 					/**
 					 * @param {{event: string, data:string}} data
 					 */
-						function (data) {
+					function (data) {
 
-						var event = data.event;
+							var event = data.event;
 
-						// That's the initial join event raiser by the master
-						if (event === "join") {
+							// That's the initial join event raiser by the master
+							if (event === "join") {
 
-							/** @type {{isStarted:boolean, master, peer}} **/
-							var myShare = shares[data.hash];
-							if (!myShare) {
-								shares[data.hash] = {isStarted:false, master:stream};
-							} else if (myShare.isStarted === true)
-								console.log(dateFormat(new Date(), "isoDateTime") + "Transfer already started");
+								/** @type {{isStarted:boolean, master, peer}} **/
+								var myShare = shares[data.hash];
+								if (!myShare) {
+									shares[data.hash] = {isStarted:false, master:stream};
+									console.log("Ready " + data.hash);
+								}
+								else if (myShare.isStarted === true)
+									console.log(dateFormat(new Date(), "isoDateTime") + "Transfer already started");
 
-						}
+							}
 					});
 			}
 
