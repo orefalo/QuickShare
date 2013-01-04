@@ -1,26 +1,34 @@
 //= require BG
 //= require dropzone
 //= require canonicalize
+//= require ../libs/ua-parser.js
 //= require ../libs/gauge
 
 var client;
 
 $(function () {
 
+	// Figure the browser engine
+	var parser = new UAParser();
+	parser.setUA(navigator.userAgent);
+	var v = parser.getResult().engine;
+	console.log(v.name + " " + v.version);
+
+
 	// SETUP THE GAUGE
 	var opts = {
-		lines: 12, // The number of lines to draw
-		angle: 0.35, // The length of each line
-		lineWidth: 0.1, // The line thickness
-		pointer: {
-			length: 0.9, // The radius of the inner circle
-			strokeWidth: 0.035, // The rotation offset
-			color: '#000000' // Fill color
+		lines:12, // The number of lines to draw
+		angle:0.35, // The length of each line
+		lineWidth:0.1, // The line thickness
+		pointer:{
+			length:0.9, // The radius of the inner circle
+			strokeWidth:0.035, // The rotation offset
+			color:'#000000' // Fill color
 		},
-		colorStart: '#6F6EA0',   // Colors
-		colorStop: '#C0C0DB',    // just experiment with them
-		strokeColor: '#EEEEEE',   // to see which ones work best for you
-		generateGradient: false
+		colorStart:'#6F6EA0', // Colors
+		colorStop:'#C0C0DB', // just experiment with them
+		strokeColor:'#EEEEEE', // to see which ones work best for you
+		generateGradient:false
 	};
 	var target = document.getElementById('gauge'); // your canvas element
 	var gauge = new Donut(target).setOptions(opts); // create sexy gauge!
@@ -41,7 +49,7 @@ $(function () {
 
 	var url = canonicalize(document.location.href);
 
-	console.log("Client is at "+url.host);
+	console.log("Client is at " + url.host);
 
 	client = new BinaryClient('ws://' + url.host);
 
@@ -59,9 +67,10 @@ $(function () {
 			dropzone.removeClass("hover");
 			$('#arrow').removeClass("arrow_anim");
 
-			$('#linkURL').bind('mousedown', function() {
+			$('#linkURL').bind('mousedown', function () {
 				var link = url + "get/" + hash;
-				window.prompt('Press CTRL+C, then ENTER',link); return false;
+				window.prompt('Press CTRL+C, then ENTER', link);
+				return false;
 			});
 
 			DropZone.setSlide(1);
