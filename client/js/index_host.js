@@ -3,6 +3,7 @@
 //= require canonicalize
 //= require ../libs/ua-parser.js
 //= require ../libs/gauge
+//= require ../libs/binary.js
 
 var client;
 
