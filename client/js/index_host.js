@@ -1,3 +1,5 @@
+//= require ../libs/jquery2b2.js
+//= require ../libs/binary.js
 //= require BG
 //= require dropzone
 //= require canonicalize
