@@ -1,5 +1,4 @@
 
-
 ![image](https://raw.github.com/orefalo/QuickShare/master/QuickShare.jpg)
 
 A complete rewrite a [DirtyShare](https://github.com/Miserlou/DirtyShare) featuring:
@@ -16,7 +15,7 @@ A complete rewrite a [DirtyShare](https://github.com/Miserlou/DirtyShare) featur
 ##Motivation
 
 1. Learning the **node.js** eco-system
-2. Have an fast way to share large file between two peers
+2. Have a fast way to share large file between two peers
 
 ###What does it do?
 
