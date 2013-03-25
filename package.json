@@ -5,8 +5,8 @@
     "version": "0.0.2",
     "private": true,
     "scripts": {
-        "start": "NODE_ENV=development supervisor -w app.js,server,client app.js",
-        "start1": "NODE_ENV=production supervisor -w app.js,server,client app.js"
+        "start": "NODE_ENV=development supervisor -q -w app.js,server,client -- app.js -DQUICKSHARE",
+        "start1": "NODE_ENV=production supervisor -q -w app.js,server,client -- app.js -DQUICKSHARE"
     },
     "dependencies": {
         "express": "3.0.x",
