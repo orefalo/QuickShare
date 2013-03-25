@@ -44,6 +44,7 @@ module.exports = function (express, app) {
 		app.use(express.staticCache());
 		app.use(express.errorHandler());
 		app.use(express.logger());
+		app.enable('trust proxy')
 
 		app.set('port', config.port || 3000);
 	}
