@@ -10,8 +10,8 @@
     },
     "dependencies": {
 
-        "express": "3.1.x",
-        "consolidate": "0.8.x",
+        "express": "3.x.x",
+        "consolidate": "0.9.x",
         "whiskers": "0.3.x",
         "connect-assets": "2.x",
         "connect-domain": "*",
