@@ -8,16 +8,16 @@ var githubhook = exports.githubhook = function (port, sites, callback) {
     self.port = port;
     self.callback = callback;
     self.sites = sites;
-  
-    //var options = {}; 
+
+    //var options = {};
 
 var options = {
   key: fs.readFileSync('githubhook-key.pem'),
   cert: fs.readFileSync('githubhook-cert.pem')
 };
- 
+
     self.listener = express();
-    self.listener.use(express.bodyParser());
+    //self.listener.use(express.bodyParser());
     self.listener.post('/:id', function (req, res) {
         if ((Object.keys(self.sites).indexOf(req.params.id) === -1) || (req.headers['x-github-event'] !== 'push')) {
             callback(new Error('Posted data does not appear to be a github event'));
