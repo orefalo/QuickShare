@@ -5,18 +5,16 @@
     "version": "0.0.2",
     "private": true,
     "scripts": {
-        "start": "NODE_ENV=development supervisor -q -w app.js,server,client -- app.js -DQUICKSHARE",
-        "start1": "NODE_ENV=production supervisor -q -w app.js,server,client -- app.js -DQUICKSHARE"
+        "start": "NODE_ENV=development node app.js",
     },
     "dependencies": {
 
         "express": "3.x.x",
-        "consolidate": "0.9.x",
+        "consolidate": "0.10.x",
         "whiskers": "0.3.x",
         "connect-assets": "2.x",
         "connect-domain": "*",
         "less": "1.x",
-        "supervisor": "0.5.x",
         "uglify-js": "*",
         "dateformat": "*",
         "binaryjs": "*",

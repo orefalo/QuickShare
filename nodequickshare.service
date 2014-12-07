@@ -1,0 +1,13 @@
+[Service]
+ExecStart=/opt/node/bin/node app.js
+Restart=always
+User=nodequickshare
+Group=nodequickshare
+WorkingDirectory=/home/nodequickshare/QuickShare
+Environment=NODE_ENV=production
+InaccessibleDirectories=/etc
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
